@@ -14,9 +14,9 @@ Version: 1.0
 
 *********************************************************************************************/
 function fttb_scripts()
-{	wp_register_script( 'fttb-script', plugins_url('rvg-float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
+{	wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
     wp_enqueue_script( 'fttb-script' );
-	wp_register_script( 'fttb-active', plugins_url('rvg-float-to-top-button/js/rvg-float-to-top-button.js'), false, '1.0', true);
+	wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), false, '1.0', true);
     wp_enqueue_script( 'fttb-active' );	
 } // fttb_scripts()
 add_action( 'init', 'fttb_scripts' );
@@ -28,7 +28,7 @@ add_action( 'init', 'fttb_scripts' );
 
 *********************************************************************************************/
 function fttb_styles()
-{	wp_register_style( 'plugin-style', plugins_url('css/rvg-float-to-top-button.css', __FILE__) );
+{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
     wp_enqueue_style( 'plugin-style' );
 } // fttb_styles()
 add_action( 'wp_enqueue_scripts', 'fttb_styles' );

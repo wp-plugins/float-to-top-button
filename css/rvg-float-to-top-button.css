@@ -1,0 +1,21 @@
+/* ---------------------------------------------------
+ *
+ *	CSS for Floating to Top Button
+ *
+ * -------------------------------------------------*/
+#scrollUp {
+	outline: 0;
+	background: no-repeat scroll 0 0 transparent;
+	bottom: 20px;
+	width: 38px;
+	height: 38px;
+	right: 20px;
+	text-indent: -999999px;
+	-khtml-opacity: .70;
+	-moz-opacity: .70;
+	-ms-filter: "alpha(opacity=70)";
+	filter: alpha(opacity=70);
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0.7);
+	opacity: .70;
+}
+

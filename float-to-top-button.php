@@ -5,7 +5,7 @@ Plugin URI: http://cagewebdev.com
 Description: This plugin will add a floating scroll to top button to posts / pages
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
-Version: 1.0
+Version: 1.1
 */
 
 /********************************************************************************************

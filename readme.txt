@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 1.0
-Version: 1.0
+Stable tag: 1.1
+Version: 1.1
 License: GPLv2 or later
 
 == Description ==
@@ -45,5 +45,5 @@ NO WARRANTY, USE IT AT YOUR OWN RISK!
 
 == Changelog ==
 
-= v1.0 [11/07/2014] =
+= v1.1 [11/08/2014] =
 * Initial release

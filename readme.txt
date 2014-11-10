@@ -2,14 +2,14 @@
 Contributors: CAGE Web Design | Rolf van Gelder
 Donate link: http://cagewebdev.com
 Plugin Name: Float to Top Button
-Plugin URI: http://cagewebdev.com
+Plugin URI: http://cagewebdev.com/float-to-top-button
 Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollup
 Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 1.1
-Version: 1.1
+Stable tag: 1.1.1
+Version: 1.1.1
 License: GPLv2 or later
 
 == Description ==
@@ -21,6 +21,18 @@ https://github.com/markgoodyear/scrollup<br />
 
 You can configure it via:<br />
 WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
+
+= Author =
+CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands - http://cagewebdev.com - http://rvg.cage.nl
+
+= Plugin URL =
+http://cagewebdev.com/float-to-top-button
+
+= Download URL =
+http://wordpress.org/plugins/float-to-top-button/
+
+= Disclaimer =
+NO WARRANTY, USE IT AT YOUR OWN RISK!
 
 = Other plugins by Rolf van Gelder =
 Optimize Database after Deleting Revisions<br />
@@ -35,15 +47,15 @@ http://wordpress.org/plugins/order-your-posts-manually/
 * Upload the Plugin to the '/wp-content/plugins/' directory
 * Activate the plugin in the WP Admin Panel &raquo; Plugins 
 
-= Disclaimer =
-NO WARRANTY, USE IT AT YOUR OWN RISK!
-
 == Frequently asked questions ==
 
 = How can I change the settings of this plugin? =
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
 
 == Changelog ==
+
+= v1.1.1 [11/10/2014] =
+* Some minor bug fixes
 
 = v1.1 [11/08/2014] =
 * Initial release

@@ -5,7 +5,7 @@ Plugin URI: http://cagewebdev.com
 Description: This plugin will add a floating scroll to top button to posts / pages
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
-Version: 1.1
+Version: 1.1.1
 */
 
 /********************************************************************************************
@@ -14,12 +14,14 @@ Version: 1.1
 
 *********************************************************************************************/
 function fttb_scripts()
-{	wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
-    wp_enqueue_script( 'fttb-script' );
+{
+	wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
+	wp_enqueue_script( 'fttb-script' );
 	wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), false, '1.0', true);
-    wp_enqueue_script( 'fttb-active' );	
+	wp_enqueue_script( 'fttb-active' );
 } // fttb_scripts()
-add_action( 'init', 'fttb_scripts' );
+# v1.1.1
+if (!is_admin()) add_action( 'init', 'fttb_scripts' );
 
 
 /********************************************************************************************
@@ -31,7 +33,8 @@ function fttb_styles()
 {	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
     wp_enqueue_style( 'plugin-style' );
 } // fttb_styles()
-add_action( 'wp_enqueue_scripts', 'fttb_styles' );
+# v1.1.1
+if (!is_admin()) add_action( 'wp_enqueue_scripts', 'fttb_styles' );
 
 
 /********************************************************************************************
@@ -77,8 +80,8 @@ function fttb_options_page()
 		echo "<div class='updated'><p><strong>".__('Float to Top Button - Settings UPDATED!','fttb')."</strong></p></div>";
 	}
 
+	# FIND AVAILABLE ARROW IMAGES
 	$arrows = array();
-	
 	foreach(glob($imgdir.'arrow*.png') as $file)
 	{
 		$fn = substr($file, strrpos($file,'/')+1);	
@@ -146,7 +149,7 @@ for($i=0; $i<count($arrows); $i++)
       <tr>
         <td><?php echo __('Opacity of the to top image (0-100)', 'fttb'); ?></td>
         <td><input name="fttb_opacity" type="text" value="<?php echo $fttb_opacity;?>" /></td>
-      </tr>      
+      </tr>
       <tr>
         <td colspan="2"><input class="button-primary button-large" type='submit' name='info_update' value='<?php echo __('Save Options','fttb');?>' style="font-weight:bold;" /></td>
       </tr>
@@ -207,5 +210,5 @@ var fttb_opacity           = '.get_option('fttb_opacity').';
 </script>	
 	';
 } // fttb_javascript_vars()
-add_action('wp_footer', 'fttb_javascript_vars');
+if(!is_admin()) add_action('wp_footer', 'fttb_javascript_vars');
 ?>

@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 1.1.1
-Version: 1.1.1
+Stable tag: 1.1.2
+Version: 1.1.2
 License: GPLv2 or later
 
 == Description ==
@@ -35,11 +35,11 @@ http://wordpress.org/plugins/float-to-top-button/
 NO WARRANTY, USE IT AT YOUR OWN RISK!
 
 = Other plugins by Rolf van Gelder =
-Optimize Database after Deleting Revisions<br />
+<strong>Optimize Database after Deleting Revisions</strong><br />
 http://wordpress.org/plugins/rvg-optimize-database/<br />
-Rocket Reader (Speed reader)<br />
+<strong>Rocket Reader (Speed reader)</strong><br />
 http://wordpress.org/plugins/rocket-reader-speed-reader/<br />
-Order your Posts Manually<br />
+<strong>Order your Posts Manually</strong><br />
 http://wordpress.org/plugins/order-your-posts-manually/
 
 == Installation ==
@@ -53,6 +53,9 @@ http://wordpress.org/plugins/order-your-posts-manually/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
 
 == Changelog ==
+
+= v1.1.2 [11/17/2014] =
+* BUG FIX: scripts and stylesheets won't be loaded on the login page
 
 = v1.1.1 [11/10/2014] =
 * Some minor bug fixes

@@ -1,40 +1,51 @@
 <?php
 /*
 Plugin Name: Float To Top Button
-Plugin URI: http://cagewebdev.com
+Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
-Version: 1.1.1
+Version: 1.1.2
 */
 
+
 /********************************************************************************************
 
-	ADD JAVASCRIPTS
+	CHECK IF THIS PAGE IS A REGULAR PAGE (NOT AN ADMIN NOR LOGIN PAGE)
 
 *********************************************************************************************/
-function fttb_scripts()
-{
-	wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
-	wp_enqueue_script( 'fttb-script' );
-	wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), false, '1.0', true);
-	wp_enqueue_script( 'fttb-active' );
-} // fttb_scripts()
-# v1.1.1
-if (!is_admin()) add_action( 'init', 'fttb_scripts' );
+function fttb_is_regular_page()
+{	// v1.1.2
+	return !is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+} // fttb_is_regular_page()
 
 
 /********************************************************************************************
 
-	ADD STYLESHEETS
+	ADD SCRIPTS AND STYLES
 
 *********************************************************************************************/
-function fttb_styles()
-{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
-    wp_enqueue_style( 'plugin-style' );
-} // fttb_styles()
-# v1.1.1
-if (!is_admin()) add_action( 'wp_enqueue_scripts', 'fttb_styles' );
+// v1.1.2
+if (fttb_is_regular_page())
+{	// LOAD JAVASCRIPT FILES
+	function fttb_scripts()
+	{
+		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
+		wp_enqueue_script( 'fttb-script' );
+		wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), false, '1.0', true);
+		wp_enqueue_script( 'fttb-active' );
+	} // fttb_scripts()
+	# v1.1.1
+	add_action( 'init', 'fttb_scripts' );
+
+	// LOAD STYLE SHEETS
+	function fttb_styles()
+	{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
+		wp_enqueue_style( 'plugin-style' );
+	} // fttb_styles()
+	# v1.1.1
+	add_action( 'wp_enqueue_scripts', 'fttb_styles' );
+} // if (fttb_is_regular_page())
 
 
 /********************************************************************************************

@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.0
-Stable tag: 1.1.2
-Version: 1.1.2
+Stable tag: 1.1.3
+Version: 1.1.3
 License: GPLv2 or later
 
 == Description ==
@@ -53,6 +53,9 @@ http://wordpress.org/plugins/order-your-posts-manually/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
 
 == Changelog ==
+
+= v1.1.3 [11/23/2014] =
+* BUG FIX: scripts are now loaded with jQuery dependency
 
 = v1.1.2 [11/17/2014] =
 * BUG FIX: scripts and stylesheets won't be loaded on the login page

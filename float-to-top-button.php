@@ -5,7 +5,7 @@ Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
-Version: 1.1.2
+Version: 1.1.3
 */
 
 
@@ -30,9 +30,11 @@ if (fttb_is_regular_page())
 {	// LOAD JAVASCRIPT FILES
 	function fttb_scripts()
 	{
-		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), false, '1.0', true);
+		// v1.1.3
+		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script( 'fttb-script' );
-		wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), false, '1.0', true);
+		// v1.1.3
+		wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script( 'fttb-active' );
 	} // fttb_scripts()
 	# v1.1.1

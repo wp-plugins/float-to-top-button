@@ -34,13 +34,15 @@ http://wordpress.org/plugins/float-to-top-button/
 = Disclaimer =
 NO WARRANTY, USE IT AT YOUR OWN RISK!
 
-= Other plugins by Rolf van Gelder =
-<strong>Optimize Database after Deleting Revisions</strong><br />
+= Plugins by Rolf van Gelder =
+<em>Optimize Database after Deleting Revisions</em><br />
 http://wordpress.org/plugins/rvg-optimize-database/<br />
-<strong>Rocket Reader (Speed reader)</strong><br />
+<em>Rocket Reader (Speed reader)</em><br />
 http://wordpress.org/plugins/rocket-reader-speed-reader/<br />
-<strong>Order your Posts Manually</strong><br />
-http://wordpress.org/plugins/order-your-posts-manually/
+<em>Order your Posts Manually</em><br />
+http://wordpress.org/plugins/order-your-posts-manually/<br />
+<em>Float to Top Button</em><br />
+http://wordpress.org/plugins/float-to-top-button/
 
 == Installation ==
 

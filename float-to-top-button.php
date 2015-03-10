@@ -1,12 +1,29 @@
 <?php
+$opm_version      = '1.1.4';
+$opm_release_date = '03/10/2015';
 /*
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
+Version: 1.1.4
+Date: 03/10/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
-Version: 1.1.3
+License: GPLv2 or later
 */
+
+/********************************************************************************************
+
+	ADD THE LANGUAGE SUPPORT (LOCALIZATION)
+
+*********************************************************************************************/
+function fttb_action_init()
+{
+	// v1.1.4
+	load_plugin_textdomain('float-to-top-button', false, dirname(plugin_basename(__FILE__)).'/language/');
+}
+// INIT HOOK
+add_action('init', 'fttb_action_init');
 
 
 /********************************************************************************************
@@ -22,32 +39,35 @@ function fttb_is_regular_page()
 
 /********************************************************************************************
 
-	ADD SCRIPTS AND STYLES
+	ADD SCRIPTS
 
 *********************************************************************************************/
 // v1.1.2
 if (fttb_is_regular_page())
 {	// LOAD JAVASCRIPT FILES
 	function fttb_scripts()
-	{
-		// v1.1.3
+	{	// v1.1.3
 		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script( 'fttb-script' );
 		// v1.1.3
 		wp_register_script( 'fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script( 'fttb-active' );
 	} // fttb_scripts()
-	# v1.1.1
 	add_action( 'init', 'fttb_scripts' );
-
-	// LOAD STYLE SHEETS
-	function fttb_styles()
-	{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
-		wp_enqueue_style( 'plugin-style' );
-	} // fttb_styles()
-	# v1.1.1
-	add_action( 'wp_enqueue_scripts', 'fttb_styles' );
 } // if (fttb_is_regular_page())
+
+
+/********************************************************************************************
+
+	ADD STYLES (BOTH FRONT END AND BACK END)
+
+*********************************************************************************************/
+// v1.1.4
+function fttb_styles()
+{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
+	wp_enqueue_style( 'plugin-style' );
+} // fttb_styles()
+add_action( 'init', 'fttb_styles' );
 
 
 /********************************************************************************************
@@ -58,7 +78,7 @@ if (fttb_is_regular_page())
 function fttb_admin_menu()
 {	
 	if (function_exists('add_options_page'))
-	{	add_options_page(__('Float to Top Button Options', 'fttb'), __('Float to Top Button Options','fttb'), 'manage_options', 'fttb_options', 'fttb_options_page');
+	{	add_options_page(__('Float to Top Button Options', 'float-to-top-button'), __('Float to Top Button','float-to-top-button'), 'manage_options', 'fttb_options', 'fttb_options_page');
     }
 } // fttb_admin_menu()
 add_action( 'admin_menu', 'fttb_admin_menu' );
@@ -90,14 +110,14 @@ function fttb_options_page()
 		update_option('fttb_scrolltext', $_REQUEST['fttb_scrolltext']);
 		update_option('fttb_arrow_img', $_REQUEST['fftb_arrow_img']);
 		update_option('fttb_opacity', $_REQUEST['fttb_opacity']);
-		echo "<div class='updated'><p><strong>".__('Float to Top Button - Settings UPDATED!','fttb')."</strong></p></div>";
+		echo "<div class='updated'><p><strong>".__('Float to Top Button - Settings UPDATED!','float-to-top-button')."</strong></p></div>";
 	}
 
 	# FIND AVAILABLE ARROW IMAGES
 	$arrows = array();
 	foreach(glob($imgdir.'arrow*.png') as $file)
 	{
-		$fn = substr($file, strrpos($file,'/')+1);	
+		$fn = substr($file, strrpos($file,'/')+1);
 		array_push($arrows, $fn);
 	}
 	
@@ -109,62 +129,73 @@ function fttb_options_page()
 	$fttb_scrolltext        = get_option('fttb_scrolltext');
 	$fttb_arrow_img         = get_option('fttb_arrow_img');
 	$fttb_opacity           = get_option('fttb_opacity');
+	
+	if(strlen($fttb_arrow_img)<12)
+		// OLD RELEASE: TEMPORARY FIX... (arrow1.png .. arrow8.png => arrow001.png .. arrow008.png)
+		$fttb_arrow_img = substr($fttb_arrow_img, 0, 4).'00.png';
 ?>
 
 <div id="options-form">
   <form name="options" method="post" action="">
     <input type="hidden" name="action" value="save_options" />
-    <h1><?php echo __('Float to Top Button - Options', 'fttb'); ?></h1>
+    <h1>
+      <?php _e('Float to Top Button - Options', 'float-to-top-button'); ?>
+    </h1>
     <table border="0" cellspacing="0" cellpadding="5">
       <tr>
-        <td><?php echo __('Distance from top before showing element (px)', 'fttb'); ?></td>
+        <td><?php _e('Distance from top before showing element (px)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_topdistance" type="text" value="<?php echo $fttb_topdistance;?>" /></td>
       </tr>
       <tr>
-        <td><?php echo __('Speed back to top (ms)', 'fttb'); ?></td>
+        <td><?php _e('Speed back to top (ms)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_topspeed" type="text" value="<?php echo $fttb_topspeed;?>" /></td>
       </tr>
       <tr>
-        <td><?php echo __('Animation', 'fttb'); ?></td>
+        <td><?php _e('Animation', 'float-to-top-button'); ?></td>
         <td><select name="fttb_animation" id="fttb_animation">
-            <option value="fade">fade</option>
-            <option value="slide">slide</option>
-            <option value="none">none</option>
+            <option value="fade">
+            <?php _e('fade', 'float-to-top-button')?>
+            </option>
+            <option value="slide">
+            <?php _e('slide', 'float-to-top-button')?>
+            </option>
+            <option value="none">
+            <?php _e('none', 'float-to-top-button')?>
+            </option>
           </select></td>
       </tr>
       <script type="text/javascript">
 	  jQuery("#fttb_animation").val("<?php echo $fttb_animation;?>");
 	  </script>
       <tr>
-        <td><?php echo __('Animation in speed (ms)', 'fttb'); ?></td>
+        <td><?php _e('Animation in speed (ms)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_animationinspeed" type="text" value="<?php echo $fttb_animationinspeed;?>" /></td>
       </tr>
       <tr>
-        <td><?php echo __('Animation out speed (ms)', 'fttb'); ?></td>
+        <td><?php _e('Animation out speed (ms)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_animationoutspeed" type="text" value="<?php echo $fttb_animationoutspeed;?>" /></td>
       </tr>
       <tr>
-        <td><?php echo __('Text for the button', 'fttb'); ?></td>
+        <td><?php _e('Text for the button', 'float-to-top-button'); ?></td>
         <td><input name="fttb_scrolltext" type="text" value="<?php echo $fttb_scrolltext;?>" /></td>
       </tr>
       <tr>
-        <td valign="top"><?php echo __('"Top of Page" image', 'fttb'); ?></td>
+        <td valign="top"><?php _e('"Top of Page" image', 'float-to-top-button'); ?></td>
         <td><?php
-for($i=0; $i<count($arrows); $i++)
-{
-	$checked = '';
-	if($fttb_arrow_img == $arrows[$i]) $checked = ' checked';
-	echo '<div style="float:left; margin-right:20px; border: solid 1px #d0d0d0; padding: 5px;"><input name="fftb_arrow_img" id="fftb_arrow_img'.$i.'" type="radio" value="'.$arrows[$i].'" '.$checked.' /><img src="'.$imgurl.$arrows[$i].'" align="absmiddle" /></div>';
-	
-} // for($i=0; $i<count($arrows); $i++)
+	for($i=0; $i<count($arrows); $i++)
+	{
+		$checked = '';
+		if($fttb_arrow_img == $arrows[$i]) $checked = ' checked';
+		echo '<div class="fftb-arrow-icon"><input name="fftb_arrow_img" id="fftb_arrow_img'.$i.'" type="radio" value="'.$arrows[$i].'" '.$checked.' /><img src="'.$imgurl.$arrows[$i].'" align="absmiddle" /></div>';
+	} // for($i=0; $i<count($arrows); $i++)
 ?></td>
       </tr>
       <tr>
-        <td><?php echo __('Opacity of the to top image (0-100)', 'fttb'); ?></td>
+        <td><?php _e('Opacity of the to top image (0-100)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_opacity" type="text" value="<?php echo $fttb_opacity;?>" /></td>
       </tr>
       <tr>
-        <td colspan="2"><input class="button-primary button-large" type='submit' name='info_update' value='<?php echo __('Save Options','fttb');?>' style="font-weight:bold;" /></td>
+        <td colspan="2"><input class="button-primary button-large save-button" type='submit' name='info_update' value='<?php echo __('Save Options','float-to-top-button');?>' /></td>
       </tr>
     </table>
   </form>
@@ -187,8 +218,8 @@ function fttb_init_options()
 		update_option('fttb_animation', 'fade');		
 		update_option('fttb_animationinspeed', 200);
 		update_option('fttb_animationoutspeed', 200);				
-		update_option('fttb_scrolltext', 'Top of Page');
-		update_option('fttb_arrow_img', 'arrow1.png');
+		update_option('fttb_scrolltext', __('Top of Page', 'float-to-top-button'));
+		update_option('fttb_arrow_img', 'arrow001.png');
 		update_option('fttb_opacity', 80);
 	}
 } // fttb_init_options()
@@ -216,7 +247,7 @@ var fttb_topspeed          = ' .get_option('fttb_topspeed').';
 var fttb_animation         = "'.get_option('fttb_animation').'";
 var fttb_animationinspeed  = ' .get_option('fttb_animationinspeed').';
 var fttb_animationoutspeed = ' .get_option('fttb_animationoutspeed').';
-var fttb_scrolltext        = "'.get_option('fttb_scrolltext').'";
+var fttb_scrolltext        = "'.__(get_option('fttb_scrolltext'),'float-to-top-button').'";
 var fttb_imgurl            = "'.$imgurl.'";
 var fttb_arrow_img         = "'.get_option('fttb_arrow_img').'";
 var fttb_opacity           = '.get_option('fttb_opacity').';

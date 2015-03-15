@@ -1,12 +1,12 @@
 <?php
 $opm_version      = '1.1.4';
-$opm_release_date = '03/10/2015';
+$opm_release_date = '03/15/2015';
 /*
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
 Version: 1.1.4
-Date: 03/10/2015
+Date: 03/15/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later

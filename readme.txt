@@ -31,6 +31,11 @@ http://cagewebdev.com/float-to-top-button
 = Download URL =
 http://wordpress.org/plugins/float-to-top-button/
 
+= Supported languages =
+* English [en_US] - translated by Rolf van Gelder, CAGE Web Design - http://cagewebdev.com
+* Dutch   [nl_NL] - translated by Rolf van Gelder, CAGE Web Design - http://cagewebdev.com
+* Hebrew  [he_IL] - translated by Ahrale Shrem, atar4u.com - http://atar4u.com
+
 = Disclaimer =
 NO WARRANTY, USE IT AT YOUR OWN RISK!
 
@@ -49,9 +54,10 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
 
 == Changelog ==
-= v1.1.4 [03/10/2015] =
+= v1.1.4 [03/15/2015] =
 * NEW: Localizaton added
 * NEW: Dutch translation (nl_NL) added
+* NEW: Hebrew translation (he_IL) added
 * NEW: more arrow icons added
 * CHANGE: several minor changes / improvements
 

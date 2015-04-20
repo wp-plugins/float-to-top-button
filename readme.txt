@@ -7,7 +7,7 @@ Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollu
 Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
-Tested up to: 4.1.1
+Tested up to: 4.2
 Stable tag: 1.1.4
 Version: 1.1.4
 License: GPLv2 or later

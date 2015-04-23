@@ -1,6 +1,6 @@
 === Float to Top Button ===
 Contributors: CAGE Web Design | Rolf van Gelder
-Donate link: http://cagewebdev.com
+Donate link: http://cagewebdev.com/index.php/donations/
 Plugin Name: Float to Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollup

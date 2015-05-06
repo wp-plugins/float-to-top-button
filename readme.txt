@@ -55,7 +55,7 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 
 == Changelog ==
 = v1.1.4 [03/15/2015] =
-* NEW: Localizaton added
+* NEW: Localization added
 * NEW: Dutch translation (nl_NL) added
 * NEW: Hebrew translation (he_IL) added
 * NEW: more arrow icons added

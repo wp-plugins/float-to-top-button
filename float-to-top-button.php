@@ -1,12 +1,12 @@
 <?php
-$opm_version      = '1.1.4';
-$opm_release_date = '03/15/2015';
+$fttb_version      = '1.1.5';
+$fttb_release_date = '05/11/2015';
 /*
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 1.1.4
-Date: 03/15/2015
+Version: 1.1.5
+Date: 05/11/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -32,8 +32,11 @@ add_action('init', 'fttb_action_init');
 
 *********************************************************************************************/
 function fttb_is_regular_page()
-{	// v1.1.2
-	return !is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+{	// v1.1.5
+	if(isset($GLOBALS['pagenow']))
+		return !is_admin() && !in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'));
+	else
+		return(!is_admin());
 } // fttb_is_regular_page()
 
 
@@ -191,7 +194,7 @@ function fttb_options_page()
 ?></td>
       </tr>
       <tr>
-        <td><?php _e('Opacity of the to top image (0-100)', 'float-to-top-button'); ?></td>
+        <td><?php _e('Opacity of the to top image (0-99)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_opacity" type="text" value="<?php echo $fttb_opacity;?>" /></td>
       </tr>
       <tr>
@@ -232,6 +235,8 @@ function fttb_init_options()
 *********************************************************************************************/
 function fttb_javascript_vars()
 {
+	global $fttb_version, $fttb_release_date;
+	
 	// INITIALIZE OPTIONS (FIRST RUN)
 	fttb_init_options();
 	
@@ -241,6 +246,7 @@ function fttb_javascript_vars()
 	$imgurl = plugins_url().'/'.$plugin_basename.'/css/img/';
 		
 	echo '
+<!-- START Float to Top Button v'.$fttb_version.' ['.$fttb_release_date.'] | http://cagewebdev.com/float-to-top-button | CAGE Web Design | Rolf van Gelder -->	
 <script type="text/javascript">
 var fttb_topdistance       = ' .get_option('fttb_topdistance').';
 var fttb_topspeed          = ' .get_option('fttb_topspeed').';
@@ -251,7 +257,8 @@ var fttb_scrolltext        = "'.__(get_option('fttb_scrolltext'),'float-to-top-b
 var fttb_imgurl            = "'.$imgurl.'";
 var fttb_arrow_img         = "'.get_option('fttb_arrow_img').'";
 var fttb_opacity           = '.get_option('fttb_opacity').';
-</script>	
+</script>
+<!-- END Float to Top Button -->
 	';
 } // fttb_javascript_vars()
 if(!is_admin()) add_action('wp_footer', 'fttb_javascript_vars');

@@ -7,9 +7,9 @@ Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollu
 Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
-Tested up to: 4.2.1
-Stable tag: 1.1.4
-Version: 1.1.4
+Tested up to: 4.2.2
+Stable tag: 1.1.5
+Version: 1.1.5
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,10 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
 
 == Changelog ==
+= v1.1.5 [05/11/2015] =
+* NEW: MouseOver added
+* CHANGE: Several (minor) changes
+
 = v1.1.4 [03/15/2015] =
 * NEW: Localization added
 * NEW: Dutch translation (nl_NL) added

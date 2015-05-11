@@ -31,12 +31,23 @@ jQuery(document).ready(function(){
 	jQuery("#scrollUp").css({"background-image":"url("+fttb_imgurl+fttb_arrow_img+")"});
 	
 	/* SET THE OPACITY OF THE 'TO TOP' IMAGE (FROM THE OPTIONS) */
-	jQuery("#scrollUp").css({"-khtml-opacity":"."+fttb_opacity});
-	jQuery("#scrollUp").css({"-moz-opacity":"."+fttb_opacity});
-	jQuery("#scrollUp").css({"-ms-filter":'"alpha(opacity='+fttb_opacity+')"'});
-	jQuery("#scrollUp").css({"filter":"alpha(opacity="+fttb_opacity+")"});
-	jQuery("#scrollUp").css({"filter":"progid:DXImageTransform.Microsoft.Alpha(opacity=0."+fttb_opacity+")"});
-	jQuery("#scrollUp").css({"opacity":"."+fttb_opacity});	
+	setOpacity(fttb_opacity);
+	
+	jQuery("#scrollUp").mouseover(function() {
+		setOpacity("99");
+	});
+	
+	jQuery("#scrollUp").mouseout(function() {
+		setOpacity(fttb_opacity);
+	});
 });		
 
-
+function setOpacity(opac)
+{
+	jQuery("#scrollUp").css({"-khtml-opacity":"."+opac});
+	jQuery("#scrollUp").css({"-moz-opacity":"."+opac});
+	jQuery("#scrollUp").css({"-ms-filter":'"alpha(opacity='+opac+')"'});
+	jQuery("#scrollUp").css({"filter":"alpha(opacity="+opac+")"});
+	jQuery("#scrollUp").css({"filter":"progid:DXImageTransform.Microsoft.Alpha(opacity=0."+opac+")"});
+	jQuery("#scrollUp").css({"opacity":"."+opac});		
+} // setOpacity()

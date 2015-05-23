@@ -30,7 +30,7 @@ jQuery(document).ready(function(){
 	/* SET THE 'TO TOP' IMAGE TO THE SELECTED IMAGE */
 	jQuery("#scrollUp").css({"background-image":"url("+fttb_imgurl+fttb_arrow_img+")"});
 	
-	/* SET THE OPACITY OF THE 'TO TOP' IMAGE (FROM THE OPTIONS) */
+	/* SET THE OPACITY OF THE 'TO TOP' IMAGE (FROM THE SETTINGS) */
 	setOpacity(fttb_opacity);
 	
 	jQuery("#scrollUp").mouseover(function() {

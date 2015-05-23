@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.2.2
-Stable tag: 1.1.5
-Version: 1.1.5
+Stable tag: 1.1.6
+Version: 1.1.6
 License: GPLv2 or later
 
 == Description ==
@@ -20,7 +20,7 @@ It's a simple, configurable wrapper for Mark Goodyear's 'scrollUp' jQuery plugin
 https://github.com/markgoodyear/scrollup<br />
 
 You can configure it via:<br />
-WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
+WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 = Author =
 CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands - http://cagewebdev.com - http://rvg.cage.nl
@@ -51,9 +51,15 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 == Frequently asked questions ==
 
 = How can I change the settings of this plugin? =
-* WP Admin Panel &raquo; Settings &raquo; Float to Top Button Options
+* WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v1.1.6 [05/23/2015] =
+* NEW: Form validation added to the settings form
+* NEW: Settings link on main plugin page
+* CHANGE: Updated the layout of the settings page
+* CHANGE: Several (minor) changes
+
 = v1.1.5 [05/11/2015] =
 * NEW: MouseOver added
 * CHANGE: Several (minor) changes

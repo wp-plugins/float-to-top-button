@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Float To Top Button\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-08 15:53+0100\n"
-"PO-Revision-Date: 2015-03-08 15:54+0100\n"
+"POT-Creation-Date: 2015-05-14 16:57+0100\n"
+"PO-Revision-Date: 2015-05-14 16:57+0100\n"
 "Last-Translator: Rolf van Gelder <info@cagewebdev.com>\n"
 "Language-Team: CAGE <info@cagewebdev.com>\n"
 "Language: nl_NL\n"
@@ -19,74 +19,125 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: float-to-top-button.php:73
-msgid "Float to Top Button Options"
+#: float-to-top-button.php:92
+msgid "Float to Top Button Settings"
 msgstr "Float to Top Button Instellingen"
 
-#: float-to-top-button.php:73
+#: float-to-top-button.php:92
 msgid "Float to Top Button"
 msgstr "Float to Top Button"
 
-#: float-to-top-button.php:105
+#: float-to-top-button.php:141
 msgid "Float to Top Button - Settings UPDATED!"
 msgstr "Float to Top Button - Instellingen BEWAARD!"
 
-#: float-to-top-button.php:129
-msgid "Float to Top Button - Options"
+#: float-to-top-button.php:189
+msgid "Distance from top is a required number"
+msgstr "Afstand vanaf het begin van de pagina is een verplicht getal"
+
+#: float-to-top-button.php:190
+msgid "Speed back to top is a required number"
+msgstr "Terug naar het begin van de pagina snelheid is een verplicht getal"
+
+#: float-to-top-button.php:191
+msgid "Animation in speed is a required number"
+msgstr "Animatiesnelheid (in) is een verplicht getal"
+
+#: float-to-top-button.php:192
+msgid "Animation out speed is a required number"
+msgstr "Animatiesnelheid (uit) is een verplicht getal"
+
+#: float-to-top-button.php:193
+msgid "Opacity is a required number (0-99)"
+msgstr "Doorzichtigheid van de afbeelding is een verplicht getal (0-99)"
+
+#: float-to-top-button.php:201
+msgid "Float to Top Button - Settings"
 msgstr "Float to Top Button - Instellingen"
 
-#: float-to-top-button.php:132
+#: float-to-top-button.php:205
+msgid "Plugin version"
+msgstr "Plugin versie"
+
+#: float-to-top-button.php:206
+msgid "Plugin page"
+msgstr "Plugin pagina"
+
+#: float-to-top-button.php:208
+msgid "Download page"
+msgstr "Download pagina"
+
+#: float-to-top-button.php:210
+msgid "Donation page"
+msgstr "Donatie pagina"
+
+#: float-to-top-button.php:217
 msgid "Distance from top before showing element (px)"
 msgstr ""
 "Afstand vanaf het begin van de pagina voordat de button getoond wordt (px)"
 
-#: float-to-top-button.php:136
+#: float-to-top-button.php:221
 msgid "Speed back to top (ms)"
 msgstr "Terug naar het begin van de pagina snelheid (ms)"
 
-#: float-to-top-button.php:140
+#: float-to-top-button.php:225
 msgid "Animation"
 msgstr "Animatie"
 
-#: float-to-top-button.php:142
+#: float-to-top-button.php:228
 msgid "fade"
 msgstr "vervagen"
 
-#: float-to-top-button.php:143
+#: float-to-top-button.php:231
 msgid "slide"
 msgstr "schuiven"
 
-#: float-to-top-button.php:144
+#: float-to-top-button.php:234
 msgid "none"
 msgstr "geen"
 
-#: float-to-top-button.php:151
+#: float-to-top-button.php:242
 msgid "Animation in speed (ms)"
 msgstr "Animatiesnelheid (in) (ms)"
 
-#: float-to-top-button.php:155
+#: float-to-top-button.php:246
 msgid "Animation out speed (ms)"
 msgstr "Animatiesnelheid (uit) (ms)"
 
-#: float-to-top-button.php:159
+#: float-to-top-button.php:250
 msgid "Text for the button"
 msgstr "Tekst voor de button"
 
-#: float-to-top-button.php:163
+#: float-to-top-button.php:254
 msgid "\"Top of Page\" image"
 msgstr "\"Begin van de pagina\" afbeelding"
 
-#: float-to-top-button.php:175
-msgid "Opacity of the to top image (0-100)"
-msgstr "Ondoorzichtigheid van de 'Begin van de pagina'-afbeelding (0-100)"
+#: float-to-top-button.php:277
+msgid "Opacity of the \"Top of Page\" image (0-99)"
+msgstr "Doorzichtigheid van de \"Begin van de pagina\" afbeelding"
 
-#: float-to-top-button.php:179
-msgid "Save Options"
-msgstr "Bewaar Opties"
+#: float-to-top-button.php:281
+msgid "Save Settings"
+msgstr "Bewaar instellingen"
 
-#: float-to-top-button.php:202
+#: float-to-top-button.php:304
 msgid "Top of Page"
 msgstr "Begin van de pagina"
+
+#~ msgid "Opacity of the to top image (0-99)"
+#~ msgstr "Doorzichtigheid van de afbeelding (0-99)"
+
+#~ msgid "Float to Top Button Options"
+#~ msgstr "Float to Top Button Instellingen"
+
+#~ msgid "Float to Top Button - Options"
+#~ msgstr "Float to Top Button - Instellingen"
+
+#~ msgid "Save Options"
+#~ msgstr "Bewaar Opties"
+
+#~ msgid "Opacity of the to top image (0-100)"
+#~ msgstr "Ondoorzichtigheid van de 'Begin van de pagina'-afbeelding (0-100)"
 
 # @ rvg-optimize-database
 #~ msgid "Optimize Database"
@@ -212,9 +263,6 @@ msgstr "Begin van de pagina"
 
 #~ msgid "check all NON-WordPress tables"
 #~ msgstr "vink alle NIET-WordPress tabellen aan"
-
-#~ msgid "Save Settings"
-#~ msgstr "Bewaar instellingen"
 
 #~ msgid "Go To Optimizer"
 #~ msgstr "Ga naar Optimalisatie"

@@ -55,7 +55,7 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 
 == Changelog ==
 = v1.2.0 [06/07/2015] =
-* NEW: A new option for disabling the button on mobile devices
+* NEW: Added a new option for disabling the button on mobile devices
 
 = v1.1.6 [05/23/2015] =
 * NEW: Form validation added to the settings form

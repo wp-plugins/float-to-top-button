@@ -1,6 +1,6 @@
 === Float to Top Button ===
 Contributors: CAGE Web Design | Rolf van Gelder
-Donate link: http://cagewebdev.com/index.php/donations-fttb/
+Donate link: http://cagewebdev.com/index.php/donations/
 Plugin Name: Float to Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollup
@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.2.2
-Stable tag: 1.1.6
-Version: 1.1.6
+Stable tag: 1.2.0
+Version: 1.2.0
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,9 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v1.2.0 [06/07/2015] =
+* NEW: A new option for disabling the button on mobile devices
+
 = v1.1.6 [05/23/2015] =
 * NEW: Form validation added to the settings form
 * NEW: Settings link on main plugin page

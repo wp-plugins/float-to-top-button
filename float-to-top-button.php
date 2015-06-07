@@ -1,12 +1,12 @@
 <?php
-$fttb_version      = '1.1.6';
-$fttb_release_date = '05/23/2015';
+$fttb_version      = '1.2.0';
+$fttb_release_date = '06/07/2015';
 /*
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 1.1.6
-Date: 05/23/2015
+Version: 1.2.0
+Date: 06/07/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -48,6 +48,9 @@ function fttb_is_regular_page()
 // v1.1.2
 if (fttb_is_regular_page())
 {	// FRONT END - LOAD JAVASCRIPT FILES
+	// Since v1.2.0: DISABLE BUTTON ON MOBILE DEVICES
+	$fttb_disable_mobile = get_option('fttb_disable_mobile');
+    if ($fttb_disable_mobile == "Y" && wp_is_mobile()) { return; }
 	function fttb_fe_scripts()
 	{	// v1.1.3
 		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
@@ -138,6 +141,11 @@ function fttb_settings()
 		update_option('fttb_scrolltext', $_REQUEST['fttb_scrolltext']);
 		update_option('fttb_arrow_img', $_REQUEST['fftb_arrow_img']);
 		update_option('fttb_opacity', $_REQUEST['fttb_opacity']);
+		// Since v1.2.0
+		$fttb_disable_mobile = 'N';
+		if(isset($_REQUEST['fttb_disable_mobile']))
+			$fttb_disable_mobile = $_REQUEST['fttb_disable_mobile'];
+		update_option('fttb_disable_mobile', $fttb_disable_mobile);	
 		echo "<div class='updated'><p><strong>".__('Float to Top Button - Settings UPDATED!','float-to-top-button')."</strong></p></div>";
 	}
 
@@ -157,6 +165,8 @@ function fttb_settings()
 	$fttb_scrolltext        = get_option('fttb_scrolltext');
 	$fttb_arrow_img         = get_option('fttb_arrow_img');
 	$fttb_opacity           = get_option('fttb_opacity');
+	// Since v1.2.0
+	$fttb_disable_mobile    = get_option('fttb_disable_mobile');
 ?>
 <script type="text/javascript">
 jQuery().ready(function() {
@@ -206,7 +216,7 @@ jQuery().ready(function() {
   <?php _e('Plugin page', 'float-to-top-button'); ?>
   </a> - <a href="https://wordpress.org/plugins/float-to-top-button/" target="_blank">
   <?php _e('Download page', 'float-to-top-button'); ?>
-  </a> - <a href="http://cagewebdev.com/index.php/donations/" target="_blank">
+  </a> - <a href="http://cagewebdev.com/index.php/donations-fttb/" target="_blank">
   <?php _e('Donation page', 'float-to-top-button'); ?>
   </a> </div>
 <div id="fttb-settings-form">
@@ -277,6 +287,14 @@ jQuery().ready(function() {
         <td><?php _e('Opacity of the "Top of Page" image (0-99)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_opacity" id="fttb_opacity" type="text" value="<?php echo $fttb_opacity;?>" /></td>
       </tr>
+<?php
+// Since v1.2.0
+if($fttb_disable_mobile == 'Y')  $fttb_disable_mobile_checked  = ' checked="checked"'; else $fttb_disable_mobile_checked = '';
+?>      
+      <tr>
+        <td><?php _e('Disable the button for mobile devices', 'float-to-top-button'); ?></td>
+        <td><input type="checkbox" name="fttb_disable_mobile" id="fttb_disable_mobile" value="Y" <?php echo $fttb_disable_mobile_checked;?> /></td>
+      </tr>      
       <tr>
         <td colspan="2"><input class="button-primary button-large fttb-save-button" type='submit' name='info_update' value='<?php echo __('Save Settings','float-to-top-button');?>' /></td>
       </tr>

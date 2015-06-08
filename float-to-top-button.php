@@ -1,12 +1,12 @@
 <?php
-$fttb_version      = '1.2.0';
-$fttb_release_date = '06/07/2015';
+$fttb_version      = '1.2.1';
+$fttb_release_date = '06/08/2015';
 /*
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 1.2.0
-Date: 06/07/2015
+Version: 1.2.1
+Date: 06/08/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -50,7 +50,7 @@ if (fttb_is_regular_page())
 {	// FRONT END - LOAD JAVASCRIPT FILES
 	// Since v1.2.0: DISABLE BUTTON ON MOBILE DEVICES
 	$fttb_disable_mobile = get_option('fttb_disable_mobile');
-    if ($fttb_disable_mobile == "Y" && wp_is_mobile()) { return; }
+    if ($fttb_disable_mobile == "Y" && wp_is_mobile()) return;
 	function fttb_fe_scripts()
 	{	// v1.1.3
 		wp_register_script( 'fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
@@ -78,7 +78,11 @@ else
 *********************************************************************************************/
 // v1.1.4
 function fttb_styles()
-{	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
+{
+	// v.1.2.1
+	$fttb_disable_mobile = get_option('fttb_disable_mobile');
+	if ($fttb_disable_mobile == "Y" && wp_is_mobile()) return;	
+	wp_register_style( 'plugin-style', plugins_url('css/float-to-top-button.css', __FILE__) );
 	wp_enqueue_style( 'plugin-style' );
 } // fttb_styles()
 add_action( 'init', 'fttb_styles' );

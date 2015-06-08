@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.2.2
-Stable tag: 1.2.0
-Version: 1.2.0
+Stable tag: 1.2.1
+Version: 1.2.1
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,9 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v1.2.1 [06/08/2015] =
+* CHANGE: Styles won't load on a mobile device when mobile devices are disabled
+
 = v1.2.0 [06/07/2015] =
 * NEW: Added a new option for disabling the button on mobile devices
 

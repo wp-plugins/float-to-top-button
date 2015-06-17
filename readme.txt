@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.2.2
-Stable tag: 2.0
-Version: 2.0
+Stable tag: 2.0.1
+Version: 2.0.1
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,9 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v2.0.1 [06/17/2015] =
+* BUG FIX: Default settings were not initialized on first run
+
 = v2.0 [06/12/2015] =
 * MAJOR UPGRADE: Total revamp of the code (thanks Matt!)
 

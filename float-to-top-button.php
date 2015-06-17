@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0
-Date: 06/12/2015
+Version: 2.0.1
+Date: 06/17/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -15,8 +15,56 @@ License: GPLv2 or later
  ***********************************************************************************/	 
 class Fttb
 {
-	var $fttb_version = '2.0';
-	var $fttb_release_date = '6/12/2015';
+	var $fttb_version = '2.0.1';
+	var $fttb_release_date = '6/17/2015';
+
+	/*******************************************************************************
+	 * 	CONSTRUCTOR
+	 *******************************************************************************/
+	function __construct()
+	{
+		// GET OPTIONS FROM DB (JSON FORMAT)
+		$this->fttb_options = get_option('fttb_options');
+
+		// FIRST RUN: SET DEFAULT SETTINGS (since v2.0.1)
+		if(!$this->fttb_options) $this->fttb_init_settings();
+
+		// LOAD THE MINIFIED VERSIONS OF SCRIPT WHEN NOT IN DEBUG MODE
+		$this->script_debug = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+
+		// BASE NAME OF THE PLUGIN
+		$this->plugin_basename = plugin_basename(__FILE__);
+		$this->plugin_basename = substr($this->plugin_basename, 0, strpos( $this->plugin_basename, '/'));
+		
+		// IMAGE LOCATION
+		$this->imgurl = plugins_url().'/'.$this->plugin_basename.'/css/img/';
+		$this->imgdir = plugin_dir_path( __FILE__ ).'css/img/';
+
+		// LOCALIZATION
+		add_action('init', array(&$this, 'fttb_i18n'));
+
+		if ($this->fttb_is_regular_page())
+		{	// ADD FRONTEND SCRIPTS
+			if ('Y' === $this->fttb_options['disable_mobile'] && wp_is_mobile()) return;
+			add_action( 'init', array( &$this, 'fttb_fe_scripts' ) );
+		} else
+		{	// ADD BACKEND SCRIPTS
+			add_action('admin_enqueue_scripts', array(&$this, 'fttb_be_scripts'));
+		} // if ($this->fttb_is_regular_page())
+
+		// ADD STYLE SHEET(S)
+		add_action('init', array(&$this, 'fttb_styles'));
+
+		if (is_admin())
+		{	// ADD BACKEND ACTIONS
+			add_action('admin_menu', array(&$this, 'fttb_admin_menu'));
+			add_filter('plugin_action_links_'.plugin_basename(__FILE__), array(&$this, 'fttb_settings_link'));
+		} else
+		{	// ADD FRONTEND ACTIONS
+			add_action('wp_footer', array(&$this, 'fttb_javascript_vars'));
+		} // if (is_admin())
+	} // function __construct()
+
 
 	/*******************************************************************************
 	 * 	DEFINE TEXT DOMAIN
@@ -93,8 +141,8 @@ class Fttb
 		$fttb_js_strings['animationinspeed'] = __( 'Animation in speed is a required number', 'float-to-top-button' );
 		$fttb_js_strings['animationoutspeed'] = __( 'Animation out speed is a required number', 'float-to-top-button' );
 		$fttb_js_strings['opacity'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );
-		wp_localize_script( 'fttb-validate', 'fttb_strings', $fttb_js_strings );
-		wp_enqueue_script( 'fttb-validate' );
+		wp_localize_script('fttb-validate', 'fttb_strings', $fttb_js_strings);
+		wp_enqueue_script('fttb-validate');
 	} // fttb_be_scripts()
 
 
@@ -103,7 +151,6 @@ class Fttb
 	 *******************************************************************************/
 	function fttb_settings()
 	{	// INITIALIZE SETTINGS (FIRST RUN)
-		$this->fttb_init_settings();
 		include_once(trailingslashit(dirname( __FILE__ )).'/admin/settings.php');
 	} // fttb_settings()
 
@@ -148,7 +195,8 @@ class Fttb
 	 * 	PASS OPTIONS TO JAVASCRIPT
 	 *******************************************************************************/
 	function fttb_javascript_vars()
-	{	echo '
+	{	
+		echo '
 <!-- START Float to Top Button v'.$this->fttb_version.' ['.$this->fttb_release_date.'] | http://cagewebdev.com/float-to-top-button | CAGE Web Design | Rolf van Gelder -->
 <script type="text/javascript">
 var fttb_topdistance	   = '.$this->fttb_options['topdistance'].';
@@ -165,48 +213,6 @@ var fttb_opacity		   = '.$this->fttb_options['opacity'].';
 ';
 	} // fttb_javascript_vars()
 
-
-	/*******************************************************************************
-	 * 	CONSTRUCTOR
-	 *******************************************************************************/
-	function __construct()
-	{
-		$this->fttb_options = get_option('fttb_options');
-		
-		// LOAD THE MINIFIED VERSIONS OF SCRIPT WHEN NOT IN DEBUG MODE
-		$this->script_debug = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
-
-		$this->plugin_basename = plugin_basename(__FILE__);
-		$this->plugin_basename = substr($this->plugin_basename, 0, strpos( $this->plugin_basename, '/'));
-		
-		// IMAGE LOCATION
-		$this->imgurl = plugins_url().'/'.$this->plugin_basename.'/css/img/';
-		$this->imgdir = plugin_dir_path( __FILE__ ).'css/img/';
-
-		// LOCALIZATION
-		add_action('init', array(&$this, 'fttb_i18n'));
-
-		if ($this->fttb_is_regular_page())
-		{	// ADD FRONTEND SCRIPTS
-			if ('Y' === $this->fttb_options['disable_mobile'] && wp_is_mobile()) return;
-			add_action( 'init', array( &$this, 'fttb_fe_scripts' ) );
-		} else
-		{	// ADD BACKEND SCRIPTS
-			add_action('admin_enqueue_scripts', array(&$this, 'fttb_be_scripts'));
-		} // if ($this->fttb_is_regular_page())
-
-		// ADD STYLE SHEET(S)
-		add_action('init', array(&$this, 'fttb_styles'));
-
-		if (is_admin())
-		{	// ADD BACKEND ACTIONS
-			add_action('admin_menu', array(&$this, 'fttb_admin_menu'));
-			add_filter('plugin_action_links_'.plugin_basename(__FILE__), array(&$this, 'fttb_settings_link'));
-		} else
-		{	// ADD FRONTEND ACTIONS
-			add_action('wp_footer', array(&$this, 'fttb_javascript_vars'));
-		} // if (is_admin())
-	} // function __construct()
 } // Fttb
 
 global $fttb_class;

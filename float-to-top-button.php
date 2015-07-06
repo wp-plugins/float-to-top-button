@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0.1
-Date: 06/17/2015
+Version: 2.0.2
+Date: 07/06/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -15,8 +15,8 @@ License: GPLv2 or later
  ***********************************************************************************/	 
 class Fttb
 {
-	var $fttb_version = '2.0.1';
-	var $fttb_release_date = '6/17/2015';
+	var $fttb_version = '2.0.2';
+	var $fttb_release_date = '07/06/2015';
 
 	/*******************************************************************************
 	 * 	CONSTRUCTOR
@@ -212,6 +212,18 @@ var fttb_opacity		   = '.$this->fttb_options['opacity'].';
 <!-- END Float to Top Button -->
 ';
 	} // fttb_javascript_vars()
+
+
+	/*******************************************************************************
+	 * 	SANITIZE INTEGER FIELD
+	 *******************************************************************************/	
+	function fttb_sanitize_int($var, $digits)
+	{
+		$safe_int = intval($var);
+		if(!$safe_int) $safe_int = '';
+		if (strlen($safe_int) > $digits) $safe_int = substr($safe_int, 0, $digits);
+		return $safe_int;
+	} // fttb_sanitize_int()
 
 } // Fttb
 

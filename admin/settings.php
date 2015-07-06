@@ -10,17 +10,17 @@ if (isset($_POST['action']) && 'save_settings' === $_POST['action'])
 {	// SAVE SETTINGS
 	check_admin_referer('fttb_settings_'.$this->fttb_version);
 
-	$this->fttb_options['topdistance']       = $_REQUEST['fttb_topdistance'];
-	$this->fttb_options['topspeed']          = $_REQUEST['fttb_topspeed'];
-	$this->fttb_options['animation']         = $_REQUEST['fttb_animation'];
-	$this->fttb_options['animationinspeed']  = $_REQUEST['fttb_animationinspeed'];
-	$this->fttb_options['animationoutspeed'] = $_REQUEST['fttb_animationoutspeed'];
-	$this->fttb_options['scrolltext']        = $_REQUEST['fttb_scrolltext'];
-	$this->fttb_options['arrow_img']         = $_REQUEST['fftb_arrow_img'];
-	$this->fttb_options['opacity']           = $_REQUEST['fttb_opacity'];
+	$this->fttb_options['topdistance']       = $this->fttb_sanitize_int($_POST['fttb_topdistance'], 4);
+	$this->fttb_options['topspeed']          = $this->fttb_sanitize_int($_POST['fttb_topspeed'], 4);
+	$this->fttb_options['animation']         = sanitize_text_field($_POST['fttb_animation']);
+	$this->fttb_options['animationinspeed']  = $this->fttb_sanitize_int($_POST['fttb_animationinspeed'], 4);
+	$this->fttb_options['animationoutspeed'] = $this->fttb_sanitize_int($_POST['fttb_animationoutspeed'], 4);
+	$this->fttb_options['scrolltext']        = sanitize_text_field($_POST['fttb_scrolltext']);
+	$this->fttb_options['arrow_img']         = sanitize_text_field($_POST['fftb_arrow_img']);
+	$this->fttb_options['opacity']           = $this->fttb_sanitize_int($_POST['fttb_opacity'], 2);
 	
-	if (isset($_REQUEST['fttb_disable_mobile']))
-		$this->fttb_options['disable_mobile'] = $_REQUEST['fttb_disable_mobile'];
+	if (isset($_POST['fttb_disable_mobile']))
+		$this->fttb_options['disable_mobile'] = sanitize_text_field($_POST['fttb_disable_mobile']);
 	else
 		$this->fttb_options['disable_mobile'] = 'N';
 		
@@ -86,7 +86,7 @@ foreach (glob($this->imgdir.'arrow*.png') as $file)
       </tr>
       <tr>
         <td><?php _e('Animation', 'float-to-top-button'); ?></td>
-        <td><select name="fttb_animation" id="fttb_animation">
+        <td><select name="fttb_animation" id="fttb_animation" class="fttb_animation">
             <option value="fade">
             <?php _e('fade', 'float-to-top-button');?>
             </option>

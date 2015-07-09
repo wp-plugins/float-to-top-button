@@ -27,7 +27,7 @@ class Fttb
 		$this->fttb_options = get_option('fttb_options');
 
 		// FIRST RUN: SET DEFAULT SETTINGS (since v2.0.1)
-		if(!$this->fttb_options) $this->fttb_init_settings();
+		$this->fttb_init_settings();
 
 		// LOAD THE MINIFIED VERSIONS OF SCRIPT WHEN NOT IN DEBUG MODE
 		$this->script_debug = (defined('WP_DEBUG') && WP_DEBUG) ? '' : '.min';
@@ -160,7 +160,8 @@ class Fttb
 	 * 	INITIALIZE SETTINGS
 	 *******************************************************************************/
 	function fttb_init_settings()
-	{	if (false === $this->fttb_options)
+	{
+		if (false === $this->fttb_options)
 		{	// NO SETTINGS YET: SET DEFAULTS
 			$this->fttb_options['topdistance'] = 300;
 			$this->fttb_options['topspeed'] = 300;
@@ -189,19 +190,14 @@ class Fttb
 				} // if (!empty($old_options))
 			} // if (false !== get_option( 'fttb_topdistance')){
 		}
-		else
-		{	// CHECK NEWLY ADDED SETTINGS v2.0.3
-			if(isset($this->fttb_options['opacity']))
-				unset($this->fttb_options['opacity']);
-			if(!isset($this->fttb_options['position']))
-				$this->fttb_options['position'] = 'lowerright';
-			if(!isset($this->fttb_options['spacing']))
-				$this->fttb_options['spacing'] = '15px';
-			if(!isset($this->fttb_options['opacity_out']))
-				$this->fttb_options['opacity_out'] = 70;
-			if(!isset($this->fttb_options['opacity_over']))
-				$this->fttb_options['opacity_over'] = 99;
-		} // if ( false === $this->fttb_options )
+		
+		if(isset($this->fttb_options['opacity']))
+		{	unset($this->fttb_options['opacity']);
+			$this->fttb_options['position'] = 'lowerright';
+			$this->fttb_options['spacing'] = '15px';
+			$this->fttb_options['opacity_out'] = 70;
+			$this->fttb_options['opacity_over'] = 99;
+		}
 
 		// SAVE OPTIONS ARRAY
 		update_option('fttb_options', $this->fttb_options);

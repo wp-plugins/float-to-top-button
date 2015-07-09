@@ -8,8 +8,8 @@ Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
 Tested up to: 4.2.2
-Stable tag: 2.0.2
-Version: 2.0.2
+Stable tag: 2.0.3
+Version: 2.0.3
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,13 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v2.0.3 [07/09/2015] =
+* NEW: Configurable position, spacing, opacity mouseout, opacity mouseover
+* NEW: More images added
+* CHANGE: Images moved from css/img to images
+* CHANGE: Image size doesn't need to be 38x38px anymore
+* CHANGE: Image name doesn't have to be arrowXXX.png (must be .png but any name is fine)
+
 = v2.0.2 [07/06/2015] =
 * CHANGE: Sanitized the Settings Form + other minor changes
 

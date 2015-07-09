@@ -16,8 +16,11 @@ if (isset($_POST['action']) && 'save_settings' === $_POST['action'])
 	$this->fttb_options['animationinspeed']  = $this->fttb_sanitize_int($_POST['fttb_animationinspeed'], 4);
 	$this->fttb_options['animationoutspeed'] = $this->fttb_sanitize_int($_POST['fttb_animationoutspeed'], 4);
 	$this->fttb_options['scrolltext']        = sanitize_text_field($_POST['fttb_scrolltext']);
-	$this->fttb_options['arrow_img']         = sanitize_text_field($_POST['fftb_arrow_img']);
-	$this->fttb_options['opacity']           = $this->fttb_sanitize_int($_POST['fttb_opacity'], 2);
+	$this->fttb_options['arrow_img']         = sanitize_text_field($_POST['fttb_arrow_img']);
+	$this->fttb_options['position']          = sanitize_text_field($_POST['fttb_position']);
+	$this->fttb_options['spacing']           = sanitize_text_field($_POST['fttb_spacing']);	
+	$this->fttb_options['opacity_out']       = $this->fttb_sanitize_int($_POST['fttb_opacity_out'], 2);
+	$this->fttb_options['opacity_over']      = $this->fttb_sanitize_int($_POST['fttb_opacity_over'], 2);	
 	
 	if (isset($_POST['fttb_disable_mobile']))
 		$this->fttb_options['disable_mobile'] = sanitize_text_field($_POST['fttb_disable_mobile']);
@@ -33,7 +36,7 @@ if (isset($_POST['action']) && 'save_settings' === $_POST['action'])
  * 	FIND AVAILABLE ARROW IMAGES
  ***********************************************************************************/
 $arrows = array();
-foreach (glob($this->imgdir.'arrow*.png') as $file)
+foreach (glob($this->imgdir.'*.png') as $file)
 {	$fn = substr($file, strrpos( $file, '/' ) + 1);
 	array_push($arrows, $fn);
 }
@@ -72,7 +75,7 @@ foreach (glob($this->imgdir.'arrow*.png') as $file)
  ***********************************************************************************/
 ?>
 <div id="fttb-settings-form">
-  <form name="fttb_settings" id="fttb_settings" method="post" action="">
+  <form name="fttb-settings" id="fttb-settings" method="post" action="">
     <?php wp_nonce_field('fttb_settings_'.$this->fttb_version); ?>
     <input type="hidden" name="action" value="save_settings" />
     <table border="0" cellspacing="0" cellpadding="5">
@@ -124,22 +127,60 @@ foreach (glob($this->imgdir.'arrow*.png') as $file)
 				{	$checked     = 'checked ';
 					$any_checked = true;
 				}
-				echo '<div class="fftb-arrow-icon"><input name="fftb_arrow_img" id="fftb_arrow_img'.$i.'" type="radio" value="'.$arrows[$i].'" '.$checked.'/><img src="'.$this->imgurl.$arrows[$i].'" align="absmiddle" /></div>'."\n";
+				echo '<div class="fttb-arrow-icon"><input name="fttb_arrow_img" id="fttb_arrow_img'.$i.'" type="radio" value="'.$arrows[$i].'" '.$checked.'/><img src="'.$this->imgurl.$arrows[$i].'" align="absmiddle" /></div>'."\n";
 			}
 			if ( !$any_checked )
 			{
 			?>
           <script type="text/javascript">
-          jQuery('#fftb_arrow_img0').prop('checked', true);
+          jQuery('#fttb_arrow_img0').prop('checked', true);
           </script>
           <?php
 			}
 			?></td>
       </tr>
       <tr>
-        <td><?php _e('Opacity of the "Top of Page" image (0-99)', 'float-to-top-button'); ?></td>
-        <td><input name="fttb_opacity" id="fttb_opacity" type="text" value="<?php echo $this->fttb_options['opacity'];?>" /></td>
+        <td valign="top"><?php _e('Position of the Button', 'float-to-top-button'); ?></td>
+        <td valign="top"><select name="fttb_position" id="fttb_position">
+            <option value="lowerright">
+            <?php _e('Lower Right', 'float-to-top-button');?>
+            </option>
+            <option value="lowerleft">
+            <?php _e('Lower Left', 'float-to-top-button');?>
+            </option>
+            <option value="upperright">
+            <?php _e('Upper Right', 'float-to-top-button');?>
+            </option>
+            <option value="upperleft">
+            <?php _e('Upper Left', 'float-to-top-button');?>
+            </option>
+          </select>
+        </td>
       </tr>
+      <script type="text/javascript">
+      jQuery('#fttb_position').val("<?php echo $this->fttb_options['position'];?>");
+      </script>
+      <tr>
+        <td valign="top"><?php _e('Spacing from the Edges', 'float-to-top-button'); ?></td>
+        <td valign="top"><select name="fttb_spacing" id="fttb_spacing">
+            <option value="15px">15px</option>
+            <option value="20px">20px</option>
+            <option value="50px">50px</option>
+            <option value="75px">75px</option>
+            <option value="100px">100px</option>
+          </select></td>
+      </tr>
+      <script type="text/javascript">
+      jQuery('#fttb_spacing').val("<?php echo $this->fttb_options['spacing'];?>");
+      </script>      
+      <tr>
+        <td><?php _e('Opacity of the image, mouseout (0-99)', 'float-to-top-button'); ?></td>
+        <td><input name="fttb_opacity_out" id="fttb_opacity_out" type="text" value="<?php echo $this->fttb_options['opacity_out'];?>" /></td>
+      </tr>
+      <tr>
+        <td><?php _e('Opacity of the image, mouseover (0-99)', 'float-to-top-button'); ?></td>
+        <td><input name="fttb_opacity_over" id="fttb_opacity_over" type="text" value="<?php echo $this->fttb_options['opacity_over'];?>" /></td>
+      </tr>      
       <?php
 		$fttb_disable_mobile_checked = '';
 		if(isset($this->fttb_options['disable_mobile']))

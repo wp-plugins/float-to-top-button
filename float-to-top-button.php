@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0.2
-Date: 07/06/2015
+Version: 2.0.3
+Date: 07/09/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -15,9 +15,9 @@ License: GPLv2 or later
  ***********************************************************************************/	 
 class Fttb
 {
-	var $fttb_version = '2.0.2';
-	var $fttb_release_date = '07/06/2015';
-
+	var $fttb_version = '2.0.3';
+	var $fttb_release_date = '07/09/2015';
+	
 	/*******************************************************************************
 	 * 	CONSTRUCTOR
 	 *******************************************************************************/
@@ -30,15 +30,15 @@ class Fttb
 		if(!$this->fttb_options) $this->fttb_init_settings();
 
 		// LOAD THE MINIFIED VERSIONS OF SCRIPT WHEN NOT IN DEBUG MODE
-		$this->script_debug = (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) ? '' : '.min';
+		$this->script_debug = (defined('WP_DEBUG') && WP_DEBUG) ? '' : '.min';
 
 		// BASE NAME OF THE PLUGIN
 		$this->plugin_basename = plugin_basename(__FILE__);
 		$this->plugin_basename = substr($this->plugin_basename, 0, strpos( $this->plugin_basename, '/'));
 		
 		// IMAGE LOCATION
-		$this->imgurl = plugins_url().'/'.$this->plugin_basename.'/css/img/';
-		$this->imgdir = plugin_dir_path( __FILE__ ).'css/img/';
+		$this->imgurl = plugins_url().'/'.$this->plugin_basename.'/images/';
+		$this->imgdir = plugin_dir_path( __FILE__ ).'images/';
 
 		// LOCALIZATION
 		add_action('init', array(&$this, 'fttb_i18n'));
@@ -122,7 +122,7 @@ class Fttb
 	function fttb_fe_scripts()
 	{	wp_register_script('fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script('fttb-script');
-		wp_register_script('fttb-active', plugins_url('float-to-top-button/js/float-to-top-button'.$this->script_debug.'.js'), array('jquery'), '1.0', true);
+		wp_register_script('fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), array('jquery'), '1.0', true);
 		wp_enqueue_script('fttb-active');
 	} // fttb_fe_scripts()
 
@@ -140,7 +140,8 @@ class Fttb
 		$fttb_js_strings['topspeed'] = __( 'Speed back to top is a required number', 'float-to-top-button' );
 		$fttb_js_strings['animationinspeed'] = __( 'Animation in speed is a required number', 'float-to-top-button' );
 		$fttb_js_strings['animationoutspeed'] = __( 'Animation out speed is a required number', 'float-to-top-button' );
-		$fttb_js_strings['opacity'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );
+		$fttb_js_strings['opacity_out'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );
+		$fttb_js_strings['opacity_over'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );		
 		wp_localize_script('fttb-validate', 'fttb_strings', $fttb_js_strings);
 		wp_enqueue_script('fttb-validate');
 	} // fttb_be_scripts()
@@ -168,7 +169,10 @@ class Fttb
 			$this->fttb_options['animationoutspeed'] = 200;
 			$this->fttb_options['scrolltext'] = __( 'Top of Page', 'float-to-top-button' );
 			$this->fttb_options['arrow_img'] = 'arrow001.png';
-			$this->fttb_options['opacity'] = 80;
+			$this->fttb_options['position'] = 'lowerright';
+			$this->fttb_options['spacing'] = '20px';			
+			$this->fttb_options['opacity_out'] = 75;
+			$this->fttb_options['opacity_over'] = 99;			
 			$this->fttb_options['disable_mobile'] = "N";
 
 			if (false !== get_option('fttb_topdistance')){
@@ -184,6 +188,19 @@ class Fttb
 					} // foreach ($old_options as $option)
 				} // if (!empty($old_options))
 			} // if (false !== get_option( 'fttb_topdistance')){
+		}
+		else
+		{	// CHECK NEWLY ADDED SETTINGS v2.0.3
+			if(isset($this->fttb_options['opacity']))
+				unset($this->fttb_options['opacity']);
+			if(!isset($this->fttb_options['position']))
+				$this->fttb_options['position'] = 'lowerright';
+			if(!isset($this->fttb_options['spacing']))
+				$this->fttb_options['spacing'] = '15px';
+			if(!isset($this->fttb_options['opacity_out']))
+				$this->fttb_options['opacity_out'] = 70;
+			if(!isset($this->fttb_options['opacity_over']))
+				$this->fttb_options['opacity_over'] = 99;
 		} // if ( false === $this->fttb_options )
 
 		// SAVE OPTIONS ARRAY
@@ -207,7 +224,10 @@ var fttb_animationoutspeed = '.$this->fttb_options['animationoutspeed'].';
 var fttb_scrolltext		   = "'. __( $this->fttb_options['scrolltext'], 'float-to-top-button' ).'";
 var fttb_imgurl			   = "'.$this->imgurl.'";
 var fttb_arrow_img		   = "'.$this->fttb_options['arrow_img'].'";
-var fttb_opacity		   = '.$this->fttb_options['opacity'].';
+var fttb_position          = "'.$this->fttb_options['position'].'";
+var fttb_spacing           = "'.$this->fttb_options['spacing'].'";
+var fttb_opacity_out	   = '.$this->fttb_options['opacity_out'].';
+var fttb_opacity_over	   = '.$this->fttb_options['opacity_over'].';
 </script>
 <!-- END Float to Top Button -->
 ';

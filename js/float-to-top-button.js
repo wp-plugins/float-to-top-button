@@ -27,18 +27,46 @@ jQuery(document).ready(function(){
 		scrollText: fttb_scrolltext                // TTTLE FOR THE IMAGE
 	});
 	
+	var fttb_img = new Image();
+	fttb_img.src = fttb_imgurl+fttb_arrow_img;
+	
+	jQuery("#scrollUp").width(fttb_img.width);
+	jQuery("#scrollUp").height(fttb_img.height);
+		
 	/* SET THE 'TO TOP' IMAGE TO THE SELECTED IMAGE */
 	jQuery("#scrollUp").css({"background-image":"url("+fttb_imgurl+fttb_arrow_img+")"});
+	// jQuery("#scrollUp").css('border', 'solid 1px #f00');
+
+	if(fttb_position == 'lowerleft')
+	{
+		jQuery("#scrollUp").css('left', fttb_spacing);
+		jQuery("#scrollUp").css('bottom', fttb_spacing);		
+	}
+	else if(fttb_position == 'lowerright')
+	{
+		jQuery("#scrollUp").css('right', fttb_spacing);
+		jQuery("#scrollUp").css('bottom', fttb_spacing);			
+	}
+	else if(fttb_position == 'upperleft')
+	{
+		jQuery("#scrollUp").css('left', fttb_spacing);
+		jQuery("#scrollUp").css('top', fttb_spacing);
+	}
+	else if(fttb_position == 'upperright')
+	{
+		jQuery("#scrollUp").css('right', fttb_spacing);
+		jQuery("#scrollUp").css('top', fttb_spacing);		
+	}
 	
 	/* SET THE OPACITY OF THE 'TO TOP' IMAGE (FROM THE SETTINGS) */
-	setOpacity(fttb_opacity);
+	setOpacity(fttb_opacity_out);
 	
 	jQuery("#scrollUp").mouseover(function() {
-		setOpacity("99");
+		setOpacity(fttb_opacity_over);
 	});
 	
 	jQuery("#scrollUp").mouseout(function() {
-		setOpacity(fttb_opacity);
+		setOpacity(fttb_opacity_out);
 	});
 });		
 

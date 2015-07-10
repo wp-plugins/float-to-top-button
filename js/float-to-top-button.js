@@ -18,6 +18,12 @@
  * -------------------------------------------------*/	
 jQuery(document).ready(function(){
 	/* CREATE THE SCROLLUP INSTANCE */
+	var fttb_img = new Image();
+	fttb_img.src = fttb_imgurl+fttb_arrow_img;
+	
+	jQuery("#scrollUp").width(fttb_img.width);
+	jQuery("#scrollUp").height(fttb_img.height);
+		
 	jQuery.scrollUp({
 		topDistance: fttb_topdistance,             // DISTANCE FROM TOP BEFORE SHOWING ELEMENT (PX)
 		topSpeed: fttb_topspeed,                   // SPEED BACK TO TOP (MS)
@@ -26,16 +32,9 @@ jQuery(document).ready(function(){
 		animationOutSpeed: fttb_animationoutspeed, // ANIMATION OUT SPEED (MS)
 		scrollText: fttb_scrolltext                // TTTLE FOR THE IMAGE
 	});
-	
-	var fttb_img = new Image();
-	fttb_img.src = fttb_imgurl+fttb_arrow_img;
-	
-	jQuery("#scrollUp").width(fttb_img.width);
-	jQuery("#scrollUp").height(fttb_img.height);
 		
 	/* SET THE 'TO TOP' IMAGE TO THE SELECTED IMAGE */
 	jQuery("#scrollUp").css({"background-image":"url("+fttb_imgurl+fttb_arrow_img+")"});
-	// jQuery("#scrollUp").css('border', 'solid 1px #f00');
 
 	if(fttb_position == 'lowerleft')
 	{

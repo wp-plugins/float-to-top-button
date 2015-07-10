@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0.3
-Date: 07/09/2015
+Version: 2.0.4
+Date: 07/10/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -15,8 +15,8 @@ License: GPLv2 or later
  ***********************************************************************************/	 
 class Fttb
 {
-	var $fttb_version = '2.0.3';
-	var $fttb_release_date = '07/09/2015';
+	var $fttb_version = '2.0.4';
+	var $fttb_release_date = '07/10/2015';
 	
 	/*******************************************************************************
 	 * 	CONSTRUCTOR
@@ -28,9 +28,6 @@ class Fttb
 
 		// FIRST RUN: SET DEFAULT SETTINGS (since v2.0.1)
 		$this->fttb_init_settings();
-
-		// LOAD THE MINIFIED VERSIONS OF SCRIPT WHEN NOT IN DEBUG MODE
-		$this->script_debug = (defined('WP_DEBUG') && WP_DEBUG) ? '' : '.min';
 
 		// BASE NAME OF THE PLUGIN
 		$this->plugin_basename = plugin_basename(__FILE__);
@@ -161,6 +158,14 @@ class Fttb
 	 *******************************************************************************/
 	function fttb_init_settings()
 	{
+		if(isset($this->fttb_options['opacity']))
+		{	unset($this->fttb_options['opacity']);
+			$this->fttb_options['position'] = 'lowerright';
+			$this->fttb_options['spacing'] = '15px';
+			$this->fttb_options['opacity_out'] = 70;
+			$this->fttb_options['opacity_over'] = 99;
+		}
+				
 		if (false === $this->fttb_options)
 		{	// NO SETTINGS YET: SET DEFAULTS
 			$this->fttb_options['topdistance'] = 300;
@@ -189,14 +194,6 @@ class Fttb
 					} // foreach ($old_options as $option)
 				} // if (!empty($old_options))
 			} // if (false !== get_option( 'fttb_topdistance')){
-		}
-		
-		if(isset($this->fttb_options['opacity']))
-		{	unset($this->fttb_options['opacity']);
-			$this->fttb_options['position'] = 'lowerright';
-			$this->fttb_options['spacing'] = '15px';
-			$this->fttb_options['opacity_out'] = 70;
-			$this->fttb_options['opacity_over'] = 99;
 		}
 
 		// SAVE OPTIONS ARRAY

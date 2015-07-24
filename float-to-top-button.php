@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0.4
-Date: 07/10/2015
+Version: 2.0.5
+Date: 07/24/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -15,8 +15,8 @@ License: GPLv2 or later
  ***********************************************************************************/	 
 class Fttb
 {
-	var $fttb_version = '2.0.4';
-	var $fttb_release_date = '07/10/2015';
+	var $fttb_version = '2.0.5';
+	var $fttb_release_date = '07/24/2015';
 	
 	/*******************************************************************************
 	 * 	CONSTRUCTOR
@@ -161,7 +161,8 @@ class Fttb
 		if(isset($this->fttb_options['opacity']))
 		{	unset($this->fttb_options['opacity']);
 			$this->fttb_options['position'] = 'lowerright';
-			$this->fttb_options['spacing'] = '15px';
+			$this->fttb_options['spacing_horizontal'] = '20px';
+			$this->fttb_options['spacing_vertical'] = '20px';
 			$this->fttb_options['opacity_out'] = 70;
 			$this->fttb_options['opacity_over'] = 99;
 		}
@@ -176,7 +177,8 @@ class Fttb
 			$this->fttb_options['scrolltext'] = __( 'Top of Page', 'float-to-top-button' );
 			$this->fttb_options['arrow_img'] = 'arrow001.png';
 			$this->fttb_options['position'] = 'lowerright';
-			$this->fttb_options['spacing'] = '20px';			
+			$this->fttb_options['spacing_horizontal'] = '20px';
+			$this->fttb_options['spacing_vertical'] = '20px';			
 			$this->fttb_options['opacity_out'] = 75;
 			$this->fttb_options['opacity_over'] = 99;			
 			$this->fttb_options['disable_mobile'] = "N";
@@ -209,18 +211,19 @@ class Fttb
 		echo '
 <!-- START Float to Top Button v'.$this->fttb_version.' ['.$this->fttb_release_date.'] | http://cagewebdev.com/float-to-top-button | CAGE Web Design | Rolf van Gelder -->
 <script type="text/javascript">
-var fttb_topdistance	   = '.$this->fttb_options['topdistance'].';
-var fttb_topspeed		   = '.$this->fttb_options['topspeed'].';
-var fttb_animation		   = "'.$this->fttb_options['animation'].'";
-var fttb_animationinspeed  = '.$this->fttb_options['animationinspeed'].';
-var fttb_animationoutspeed = '.$this->fttb_options['animationoutspeed'].';
-var fttb_scrolltext		   = "'. __( $this->fttb_options['scrolltext'], 'float-to-top-button' ).'";
-var fttb_imgurl			   = "'.$this->imgurl.'";
-var fttb_arrow_img		   = "'.$this->fttb_options['arrow_img'].'";
-var fttb_position          = "'.$this->fttb_options['position'].'";
-var fttb_spacing           = "'.$this->fttb_options['spacing'].'";
-var fttb_opacity_out	   = '.$this->fttb_options['opacity_out'].';
-var fttb_opacity_over	   = '.$this->fttb_options['opacity_over'].';
+var fttb_topdistance	    = '.$this->fttb_options['topdistance'].';
+var fttb_topspeed		    = '.$this->fttb_options['topspeed'].';
+var fttb_animation		    = "'.$this->fttb_options['animation'].'";
+var fttb_animationinspeed   = '.$this->fttb_options['animationinspeed'].';
+var fttb_animationoutspeed  = '.$this->fttb_options['animationoutspeed'].';
+var fttb_scrolltext		    = "'. __( $this->fttb_options['scrolltext'], 'float-to-top-button' ).'";
+var fttb_imgurl			    = "'.$this->imgurl.'";
+var fttb_arrow_img		    = "'.$this->fttb_options['arrow_img'].'";
+var fttb_position           = "'.$this->fttb_options['position'].'";
+var fttb_spacing_horizontal = "'.$this->fttb_options['spacing_horizontal'].'";
+var fttb_spacing_vertical   = "'.$this->fttb_options['spacing_vertical'].'";
+var fttb_opacity_out	    = '.$this->fttb_options['opacity_out'].';
+var fttb_opacity_over	    = '.$this->fttb_options['opacity_over'].';
 </script>
 <!-- END Float to Top Button -->
 ';

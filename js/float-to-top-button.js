@@ -38,23 +38,23 @@ jQuery(document).ready(function(){
 
 	if(fttb_position == 'lowerleft')
 	{
-		jQuery("#scrollUp").css('left', fttb_spacing);
-		jQuery("#scrollUp").css('bottom', fttb_spacing);		
+		jQuery("#scrollUp").css('left', fttb_spacing_horizontal);
+		jQuery("#scrollUp").css('bottom', fttb_spacing_vertical);		
 	}
 	else if(fttb_position == 'lowerright')
 	{
-		jQuery("#scrollUp").css('right', fttb_spacing);
-		jQuery("#scrollUp").css('bottom', fttb_spacing);			
+		jQuery("#scrollUp").css('right', fttb_spacing_horizontal);
+		jQuery("#scrollUp").css('bottom', fttb_spacing_vertical);			
 	}
 	else if(fttb_position == 'upperleft')
 	{
-		jQuery("#scrollUp").css('left', fttb_spacing);
-		jQuery("#scrollUp").css('top', fttb_spacing);
+		jQuery("#scrollUp").css('left', fttb_spacing_horizontal);
+		jQuery("#scrollUp").css('top', fttb_spacing_vertical);
 	}
 	else if(fttb_position == 'upperright')
 	{
-		jQuery("#scrollUp").css('right', fttb_spacing);
-		jQuery("#scrollUp").css('top', fttb_spacing);		
+		jQuery("#scrollUp").css('right', fttb_spacing_horizontal);
+		jQuery("#scrollUp").css('top', fttb_spacing_vertical);		
 	}
 	
 	/* SET THE OPACITY OF THE 'TO TOP' IMAGE (FROM THE SETTINGS) */

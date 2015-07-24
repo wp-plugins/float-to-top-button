@@ -10,17 +10,18 @@ if (isset($_POST['action']) && 'save_settings' === $_POST['action'])
 {	// SAVE SETTINGS
 	check_admin_referer('fttb_settings_'.$this->fttb_version);
 
-	$this->fttb_options['topdistance']       = $this->fttb_sanitize_int($_POST['fttb_topdistance'], 4);
-	$this->fttb_options['topspeed']          = $this->fttb_sanitize_int($_POST['fttb_topspeed'], 4);
-	$this->fttb_options['animation']         = sanitize_text_field($_POST['fttb_animation']);
-	$this->fttb_options['animationinspeed']  = $this->fttb_sanitize_int($_POST['fttb_animationinspeed'], 4);
-	$this->fttb_options['animationoutspeed'] = $this->fttb_sanitize_int($_POST['fttb_animationoutspeed'], 4);
-	$this->fttb_options['scrolltext']        = sanitize_text_field($_POST['fttb_scrolltext']);
-	$this->fttb_options['arrow_img']         = sanitize_text_field($_POST['fttb_arrow_img']);
-	$this->fttb_options['position']          = sanitize_text_field($_POST['fttb_position']);
-	$this->fttb_options['spacing']           = sanitize_text_field($_POST['fttb_spacing']);	
-	$this->fttb_options['opacity_out']       = $this->fttb_sanitize_int($_POST['fttb_opacity_out'], 2);
-	$this->fttb_options['opacity_over']      = $this->fttb_sanitize_int($_POST['fttb_opacity_over'], 2);	
+	$this->fttb_options['topdistance']        = $this->fttb_sanitize_int($_POST['fttb_topdistance'], 4);
+	$this->fttb_options['topspeed']           = $this->fttb_sanitize_int($_POST['fttb_topspeed'], 4);
+	$this->fttb_options['animation']          = sanitize_text_field($_POST['fttb_animation']);
+	$this->fttb_options['animationinspeed']   = $this->fttb_sanitize_int($_POST['fttb_animationinspeed'], 4);
+	$this->fttb_options['animationoutspeed']  = $this->fttb_sanitize_int($_POST['fttb_animationoutspeed'], 4);
+	$this->fttb_options['scrolltext']         = sanitize_text_field($_POST['fttb_scrolltext']);
+	$this->fttb_options['arrow_img']          = sanitize_text_field($_POST['fttb_arrow_img']);
+	$this->fttb_options['position']           = sanitize_text_field($_POST['fttb_position']);
+	$this->fttb_options['spacing_horizontal'] = sanitize_text_field($_POST['fttb_spacing_horizontal']);
+	$this->fttb_options['spacing_vertical']   = sanitize_text_field($_POST['fttb_spacing_vertical']);	
+	$this->fttb_options['opacity_out']        = $this->fttb_sanitize_int($_POST['fttb_opacity_out'], 2);
+	$this->fttb_options['opacity_over']       = $this->fttb_sanitize_int($_POST['fttb_opacity_over'], 2);	
 	
 	if (isset($_POST['fttb_disable_mobile']))
 		$this->fttb_options['disable_mobile'] = sanitize_text_field($_POST['fttb_disable_mobile']);
@@ -161,8 +162,8 @@ foreach (glob($this->imgdir.'*.png') as $file)
       jQuery('#fttb_position').val("<?php echo $this->fttb_options['position'];?>");
       </script>
       <tr>
-        <td valign="top"><?php _e('Spacing from the Edges', 'float-to-top-button'); ?></td>
-        <td valign="top"><select name="fttb_spacing" id="fttb_spacing">
+        <td valign="top"><?php _e('Horizontal spacing', 'float-to-top-button'); ?></td>
+        <td valign="top"><select name="fttb_spacing_horizontal" id="fttb_spacing_horizontal">
             <option value="15px">15px</option>
             <option value="20px">20px</option>
             <option value="50px">50px</option>
@@ -171,8 +172,21 @@ foreach (glob($this->imgdir.'*.png') as $file)
           </select></td>
       </tr>
       <script type="text/javascript">
-      jQuery('#fttb_spacing').val("<?php echo $this->fttb_options['spacing'];?>");
-      </script>      
+      jQuery('#fttb_spacing_horizontal').val("<?php echo $this->fttb_options['spacing_horizontal'];?>");
+      </script>
+      <tr>
+        <td valign="top"><?php _e('Vertical spacing', 'float-to-top-button'); ?></td>
+        <td valign="top"><select name="fttb_spacing_vertical" id="fttb_spacing_vertical">
+            <option value="15px">15px</option>
+            <option value="20px">20px</option>
+            <option value="50px">50px</option>
+            <option value="75px">75px</option>
+            <option value="100px">100px</option>
+          </select></td>
+      </tr>
+      <script type="text/javascript">
+      jQuery('#fttb_spacing_vertical').val("<?php echo $this->fttb_options['spacing_vertical'];?>");
+      </script>               
       <tr>
         <td><?php _e('Opacity of the image, mouseout (0-99)', 'float-to-top-button'); ?></td>
         <td><input name="fttb_opacity_out" id="fttb_opacity_out" type="text" value="<?php echo $this->fttb_options['opacity_out'];?>" /></td>

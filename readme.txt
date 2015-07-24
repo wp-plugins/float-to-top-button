@@ -7,9 +7,9 @@ Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollu
 Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
-Tested up to: 4.2.2
-Stable tag: 2.0.4
-Version: 2.0.4
+Tested up to: 4.2.3
+Stable tag: 2.0.5
+Version: 2.0.5
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,9 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v2.0.5 [07/24/2015] =
+* CHANGE: The spacing option has been split up into horizontal and vertical spacing
+
 = v2.0.4 [07/10/2015] =
 * BUG FIX: Under certain circumstances the button didn't show up
 

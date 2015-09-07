@@ -7,9 +7,9 @@ Tags: jQuery, floating button, button, to top, scroll to top, scrolling, scrollu
 Author URI: http://rvg.cage.nl
 Author: CAGE Web Design | Rolf van Gelder, Eindhoven, The Netherlands
 Requires at least: 2.8
-Tested up to: 4.2.3
-Stable tag: 2.0.5
-Version: 2.0.5
+Tested up to: 4.3
+Stable tag: 2.0.7
+Version: 2.0.7
 License: GPLv2 or later
 
 == Description ==
@@ -54,6 +54,14 @@ http://cagewebdev.com/index.php/wordpress-plugins/
 * WP Admin Panel &raquo; Settings &raquo; Float to Top Button
 
 == Changelog ==
+= v2.0.7 [09/07/2015] =
+* NEW: Custom arrow image (via an URL)
+* NEW: Option to set the Z-index of the overlay
+* CHANGE: Inline JavaScript has been localized now (thanks, summatix!)
+
+= v2.0.6 [08/22/2015] =
+* CHANGE: Minified the .js and .css file
+
 = v2.0.5 [07/24/2015] =
 * CHANGE: The spacing option has been split up into horizontal and vertical spacing
 

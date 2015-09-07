@@ -3,8 +3,8 @@
 Plugin Name: Float To Top Button
 Plugin URI: http://cagewebdev.com/float-to-top-button
 Description: This plugin will add a floating scroll to top button to posts / pages
-Version: 2.0.5
-Date: 07/24/2015
+Version: 2.0.7
+Date: 09/07/2015
 Author: Rolf van Gelder
 Author URI: http://cagewebdev.com
 License: GPLv2 or later
@@ -13,10 +13,14 @@ License: GPLv2 or later
 /***********************************************************************************
  * 	MAIN CLASS
  ***********************************************************************************/	 
+// CREATE INSTANCE
+global $fttb_class;
+$fttb_class = new Fttb;
+
 class Fttb
 {
-	var $fttb_version = '2.0.5';
-	var $fttb_release_date = '07/24/2015';
+	var $fttb_version       = '2.0.7';
+	var $fttb_release_date  = '09/07/2015';
 	
 	/*******************************************************************************
 	 * 	CONSTRUCTOR
@@ -25,6 +29,9 @@ class Fttb
 	{
 		// GET OPTIONS FROM DB (JSON FORMAT)
 		$this->fttb_options = get_option('fttb_options');
+		
+		// USE THE NON-MINIFIED VERSION WHILE DEBUGGING (since v2.0.6)
+		$this->script_debug = (defined('WP_DEBUG') && WP_DEBUG) ? '' : '.min';
 
 		// FIRST RUN: SET DEFAULT SETTINGS (since v2.0.1)
 		$this->fttb_init_settings();
@@ -56,9 +63,6 @@ class Fttb
 		{	// ADD BACKEND ACTIONS
 			add_action('admin_menu', array(&$this, 'fttb_admin_menu'));
 			add_filter('plugin_action_links_'.plugin_basename(__FILE__), array(&$this, 'fttb_settings_link'));
-		} else
-		{	// ADD FRONTEND ACTIONS
-			add_action('wp_footer', array(&$this, 'fttb_javascript_vars'));
 		} // if (is_admin())
 	} // function __construct()
 
@@ -88,7 +92,8 @@ class Fttb
 	function fttb_styles()
 	{	if(isset($fttb_options))
 			if ('Y' === $fttb_options['disable_mobile'] && wp_is_mobile()) return;
-		wp_register_style('plugin-style', plugins_url( 'css/float-to-top-button.css', __FILE__ ));
+		// v2.0.6
+		wp_register_style('plugin-style', plugins_url( 'css/float-to-top-button'.$this->script_debug.'.css', __FILE__ ));
 		wp_enqueue_style('plugin-style');
 	} // fttb_styles()
 
@@ -111,17 +116,16 @@ class Fttb
 	{	array_unshift($links, '<a href="options-general.php?page=fttb_settings">Settings</a>');
 		return $links;
 	} // fttb_settings_link()
-
-
+	
+	
 	/*******************************************************************************
 	 * 	LOAD FRONTEND JAVASCRIPT
 	 *******************************************************************************/
 	function fttb_fe_scripts()
-	{	wp_register_script('fttb-script', plugins_url('float-to-top-button/js/jquery.scrollUp.min.js'), array('jquery'), '1.0', true);
-		wp_enqueue_script('fttb-script');
-		wp_register_script('fttb-active', plugins_url('float-to-top-button/js/float-to-top-button.js'), array('jquery'), '1.0', true);
-		wp_enqueue_script('fttb-active');
-	} // fttb_fe_scripts()
+	{	wp_enqueue_script('fttb-script', plugin_dir_url( __FILE__ ).'/js/jquery.scrollUp.min.js', array('jquery'), $this->fttb_version, true);
+		wp_enqueue_script('fttb-active', plugin_dir_url( __FILE__ ).'/js/float-to-top-button'.$this->script_debug.'.js', array('jquery'), $this->fttb_version, true);
+		wp_localize_script('fttb-active', 'fttb', $this->fttb_get_javascript_vars());
+	} // fttb_fe_scripts()	
 
 
 	/*******************************************************************************
@@ -138,7 +142,8 @@ class Fttb
 		$fttb_js_strings['animationinspeed'] = __( 'Animation in speed is a required number', 'float-to-top-button' );
 		$fttb_js_strings['animationoutspeed'] = __( 'Animation out speed is a required number', 'float-to-top-button' );
 		$fttb_js_strings['opacity_out'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );
-		$fttb_js_strings['opacity_over'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );		
+		$fttb_js_strings['opacity_over'] = __( 'Opacity is a required number (0-99)', 'float-to-top-button' );
+		$fttb_js_strings['zindex'] = __( 'Z-index is a required number (0-9999999999)', 'float-to-top-button' );				
 		wp_localize_script('fttb-validate', 'fttb_strings', $fttb_js_strings);
 		wp_enqueue_script('fttb-validate');
 	} // fttb_be_scripts()
@@ -158,32 +163,11 @@ class Fttb
 	 *******************************************************************************/
 	function fttb_init_settings()
 	{
-		if(isset($this->fttb_options['opacity']))
-		{	unset($this->fttb_options['opacity']);
-			$this->fttb_options['position'] = 'lowerright';
-			$this->fttb_options['spacing_horizontal'] = '20px';
-			$this->fttb_options['spacing_vertical'] = '20px';
-			$this->fttb_options['opacity_out'] = 70;
-			$this->fttb_options['opacity_over'] = 99;
-		}
-				
+		// CHECK SETTINGS AND CREATE DEFAULT VALUES IF NEEDED
+		$this->fttb_set_defaults();
+		
 		if (false === $this->fttb_options)
-		{	// NO SETTINGS YET: SET DEFAULTS
-			$this->fttb_options['topdistance'] = 300;
-			$this->fttb_options['topspeed'] = 300;
-			$this->fttb_options['animation'] = 'fade';
-			$this->fttb_options['animationinspeed'] = 200;
-			$this->fttb_options['animationoutspeed'] = 200;
-			$this->fttb_options['scrolltext'] = __( 'Top of Page', 'float-to-top-button' );
-			$this->fttb_options['arrow_img'] = 'arrow001.png';
-			$this->fttb_options['position'] = 'lowerright';
-			$this->fttb_options['spacing_horizontal'] = '20px';
-			$this->fttb_options['spacing_vertical'] = '20px';			
-			$this->fttb_options['opacity_out'] = 75;
-			$this->fttb_options['opacity_over'] = 99;			
-			$this->fttb_options['disable_mobile'] = "N";
-
-			if (false !== get_option('fttb_topdistance')){
+		{	if (false !== get_option('fttb_topdistance')){
 				global $wpdb;
 				$old_options = $wpdb->get_col("SELECT option_name from $wpdb->options where option_name LIKE 'fttb%'");
 				if (!empty($old_options))
@@ -204,30 +188,51 @@ class Fttb
 
 
 	/*******************************************************************************
-	 * 	PASS OPTIONS TO JAVASCRIPT
+	 * 	CHECK SETTINGS AND CREATE DEFAULT VALUES IF NEEDED
+	 *******************************************************************************/	
+	function fttb_set_defaults()
+	{
+		if (!isset($this->fttb_options['topdistance'])) $this->fttb_options['topdistance'] = 300;
+		if (!isset($this->fttb_options['topspeed'])) $this->fttb_options['topspeed'] = 300;
+		if (!isset($this->fttb_options['animation'])) $this->fttb_options['animation'] = 'fade';
+		if (!isset($this->fttb_options['animationinspeed'])) $this->fttb_options['animationinspeed'] = 200;
+		if (!isset($this->fttb_options['animationoutspeed'])) $this->fttb_options['animationoutspeed'] = 200;
+		if (!isset($this->fttb_options['scrolltext'])) $this->fttb_options['scrolltext'] = __( 'Top of Page', 'float-to-top-button' );
+		if (!isset($this->fttb_options['arrow_img'])) $this->fttb_options['arrow_img'] = 'arrow001.png';
+		if (!isset($this->fttb_options['arrow_img_url'])) $this->fttb_options['arrow_img_url'] = '';
+		if (!isset($this->fttb_options['position'])) $this->fttb_options['position'] = 'lowerright';
+		if (!isset($this->fttb_options['spacing_horizontal'])) $this->fttb_options['spacing_horizontal'] = '20px';
+		if (!isset($this->fttb_options['spacing_vertical'])) $this->fttb_options['spacing_vertical'] = '20px';			
+		if (!isset($this->fttb_options['opacity_out'])) $this->fttb_options['opacity_out'] = 75;
+		if (!isset($this->fttb_options['opacity_over'])) $this->fttb_options['opacity_over'] = 99;			
+		if (!isset($this->fttb_options['disable_mobile'])) $this->fttb_options['disable_mobile'] = 'N';
+		if (!isset($this->fttb_options['zindex'])) $this->fttb_options['zindex'] = 2147483647;		
+	} // fttb_set_defaults()
+
+
+	/*******************************************************************************
+	 * 	PASS SETTINGS TO JAVASCRIPT
 	 *******************************************************************************/
-	function fttb_javascript_vars()
-	{	
-		echo '
-<!-- START Float to Top Button v'.$this->fttb_version.' ['.$this->fttb_release_date.'] | http://cagewebdev.com/float-to-top-button | CAGE Web Design | Rolf van Gelder -->
-<script type="text/javascript">
-var fttb_topdistance	    = '.$this->fttb_options['topdistance'].';
-var fttb_topspeed		    = '.$this->fttb_options['topspeed'].';
-var fttb_animation		    = "'.$this->fttb_options['animation'].'";
-var fttb_animationinspeed   = '.$this->fttb_options['animationinspeed'].';
-var fttb_animationoutspeed  = '.$this->fttb_options['animationoutspeed'].';
-var fttb_scrolltext		    = "'. __( $this->fttb_options['scrolltext'], 'float-to-top-button' ).'";
-var fttb_imgurl			    = "'.$this->imgurl.'";
-var fttb_arrow_img		    = "'.$this->fttb_options['arrow_img'].'";
-var fttb_position           = "'.$this->fttb_options['position'].'";
-var fttb_spacing_horizontal = "'.$this->fttb_options['spacing_horizontal'].'";
-var fttb_spacing_vertical   = "'.$this->fttb_options['spacing_vertical'].'";
-var fttb_opacity_out	    = '.$this->fttb_options['opacity_out'].';
-var fttb_opacity_over	    = '.$this->fttb_options['opacity_over'].';
-</script>
-<!-- END Float to Top Button -->
-';
-	} // fttb_javascript_vars()
+	function fttb_get_javascript_vars()
+	{
+		return array(
+			'topdistance'        => $this->fttb_options['topdistance'],
+			'topspeed'           => $this->fttb_options['topspeed'],
+			'animation'          => $this->fttb_options['animation'],
+			'animationinspeed'   => $this->fttb_options['animationinspeed'],
+			'animationoutspeed'  => $this->fttb_options['animationoutspeed'],
+			'scrolltext'         => __( $this->fttb_options['scrolltext'], 'float-to-top-button' ),
+			'imgurl'             => $this->imgurl,
+			'arrow_img'          => $this->fttb_options['arrow_img'],
+			'arrow_img_url'      => $this->fttb_options['arrow_img_url'],
+			'position'           => $this->fttb_options['position'],
+			'spacing_horizontal' => $this->fttb_options['spacing_horizontal'],
+			'spacing_vertical'   => $this->fttb_options['spacing_vertical'],
+			'opacity_out'        => $this->fttb_options['opacity_out'],
+			'opacity_over'       => $this->fttb_options['opacity_over'],
+			'zindex'             => $this->fttb_options['zindex']
+		);		
+	} // fttb_get_javascript_vars()
 
 
 	/*******************************************************************************
@@ -242,7 +247,4 @@ var fttb_opacity_over	    = '.$this->fttb_options['opacity_over'].';
 	} // fttb_sanitize_int()
 
 } // Fttb
-
-global $fttb_class;
-$fttb_class = new Fttb;
 ?>

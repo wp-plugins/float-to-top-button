@@ -2,157 +2,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Float To Top Button\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-08 14:32+0200\n"
-"PO-Revision-Date: 2015-07-08 14:33+0200\n"
-"Last-Translator: Rolf van Gelder <info@cagewebdevc.com>\n"
+"POT-Creation-Date: 2015-09-07 22:09+0100\n"
+"PO-Revision-Date: 2015-09-07 22:12+0100\n"
+"Last-Translator: Rolf van Gelder <info@cagewebdev.com>\n"
 "Language-Team: CAGE <info@cagewebdev.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/settings.php:31
+#: admin/settings.php:37
 msgid "Float to Top Button - Settings UPDATED!"
 msgstr "Float to Top Button - Instellingen BEWAARD!"
 
-#: admin/settings.php:52
+#: admin/settings.php:58
 msgid "Float to Top Button - Settings"
 msgstr "Float to Top Button - Instellingen"
 
-#: admin/settings.php:62
+#: admin/settings.php:68
 msgid "Plugin version"
 msgstr "Plugin versie"
 
-#: admin/settings.php:64
+#: admin/settings.php:69
 msgid "Plugin page"
 msgstr "Plugin pagina"
 
-#: admin/settings.php:66
+#: admin/settings.php:70
 msgid "Download page"
 msgstr "Download pagina"
 
-#: admin/settings.php:68
+#: admin/settings.php:71
+msgid "Author"
+msgstr "Auteur"
+
+#: admin/settings.php:72
+msgid "Company"
+msgstr "Bedrijf"
+
+#: admin/settings.php:73
 msgid "Donation page"
 msgstr "Donatie pagina"
 
-#: admin/settings.php:83
+#: admin/settings.php:105
 msgid "Distance from top before showing element (px)"
-msgstr "Afstand vanaf het begin van de pagina voordat de button getoond wordt (px)"
+msgstr ""
+"Afstand vanaf het begin van de pagina voordat de button getoond wordt (px)"
 
-#: admin/settings.php:87
+#: admin/settings.php:109
 msgid "Speed back to top (ms)"
 msgstr "Terug naar het begin van de pagina snelheid (ms)"
 
-#: admin/settings.php:91
+#: admin/settings.php:113
 msgid "Animation"
 msgstr "Animatie"
 
-#: admin/settings.php:94
+#: admin/settings.php:116
 msgid "fade"
 msgstr "vervagen"
 
-#: admin/settings.php:97
+#: admin/settings.php:119
 msgid "slide"
 msgstr "schuiven"
 
-#: admin/settings.php:100
+#: admin/settings.php:122
 msgid "none"
 msgstr "geen"
 
-#: admin/settings.php:108
+#: admin/settings.php:130
 msgid "Animation in speed (ms)"
 msgstr "Animatiesnelheid (in) (ms)"
 
-#: admin/settings.php:112
+#: admin/settings.php:134
 msgid "Animation out speed (ms)"
 msgstr "Animatiesnelheid (uit) (ms)"
 
-#: admin/settings.php:116
+#: admin/settings.php:138
 msgid "Text for the button"
 msgstr "Tekst voor de button"
 
-#: admin/settings.php:120
+#: admin/settings.php:142
 msgid "\"Top of Page\" image"
 msgstr "\"Begin van de pagina\" afbeelding"
 
-#: admin/settings.php:143
+#: admin/settings.php:173
+msgid ""
+"URL of a custom \"Top of Page\" image<br />Overrules the image selection "
+"above!"
+msgstr ""
+"URL van het persoonlijke \"Begin van de pagina\" plaatje.<br />Overschrijft "
+"de plaatjes hierboven."
+
+#: admin/settings.php:179
 msgid "Position of the Button"
 msgstr "Positie van de button"
 
-#: admin/settings.php:146
+#: admin/settings.php:181
 msgid "Lower Right"
 msgstr "Rechtsonder"
 
-#: admin/settings.php:149
+#: admin/settings.php:182
 msgid "Lower Left"
 msgstr "Linksonder"
 
-#: admin/settings.php:152
+#: admin/settings.php:183
 msgid "Upper Right"
 msgstr "Rechtboven"
 
-#: admin/settings.php:155
+#: admin/settings.php:184
 msgid "Upper Left"
 msgstr "Linksboven"
 
-#: admin/settings.php:164
-msgid "Spacing from the Edges"
-msgstr "Afstand van de randen"
+#: admin/settings.php:192
+msgid "Horizontal spacing"
+msgstr "Horizontale afstand"
 
-#: admin/settings.php:177
+#: admin/settings.php:205
+msgid "Vertical spacing"
+msgstr "Verticale afstand"
+
+#: admin/settings.php:218
 msgid "Opacity of the image, mouseout (0-99)"
 msgstr "Doorzichtigheid van de afbeelding, mouseout (0-99)"
 
-#: admin/settings.php:181
+#: admin/settings.php:222
 msgid "Opacity of the image, mouseover (0-99)"
 msgstr "Doorzichtigheid van de afbeelding, mouseover (0-99)"
 
-#: admin/settings.php:191
+#: admin/settings.php:232
 msgid "Disable the button for mobile devices"
 msgstr "Schakel de Float to Top Button uit voor mobiele apparaten"
 
-#: admin/settings.php:195
+#: admin/settings.php:236
+msgid "Z-index of the overlay"
+msgstr "Z-index van de overlay"
+
+#: admin/settings.php:240
 msgid "Save Settings"
 msgstr "Bewaar instellingen"
 
-#: float-to-top-button.php:105
+#: float-to-top-button.php:107
 msgid "Float to Top Button Settings"
 msgstr "Float to Top Button Instellingen"
 
-#: float-to-top-button.php:105
+#: float-to-top-button.php:107
 msgid "Float to Top Button"
 msgstr "Float to Top Button"
 
-#: float-to-top-button.php:139
+#: float-to-top-button.php:140
 msgid "Distance from top is a required number"
 msgstr "Afstand vanaf het begin van de pagina is een verplicht getal"
 
-#: float-to-top-button.php:140
+#: float-to-top-button.php:141
 msgid "Speed back to top is a required number"
 msgstr "Terug naar het begin van de pagina snelheid is een verplicht getal"
 
-#: float-to-top-button.php:141
+#: float-to-top-button.php:142
 msgid "Animation in speed is a required number"
 msgstr "Animatiesnelheid (in) is een verplicht getal"
 
-#: float-to-top-button.php:142
+#: float-to-top-button.php:143
 msgid "Animation out speed is a required number"
 msgstr "Animatiesnelheid (uit) is een verplicht getal"
 
-#: float-to-top-button.php:143 float-to-top-button.php:144
+#: float-to-top-button.php:144 float-to-top-button.php:145
 msgid "Opacity is a required number (0-99)"
 msgstr "Doorzichtigheid van de afbeelding is een verplicht getal (0-99)"
 
-#: float-to-top-button.php:170
+#: float-to-top-button.php:146
+msgid "Z-index is a required number (0-9999999999)"
+msgstr "Z-index is een verplicht getal (0-9999999999)"
+
+#: float-to-top-button.php:200
 msgid "Top of Page"
 msgstr "Begin van de pagina"
+
+#~ msgid "Spacing from the Edges"
+#~ msgstr "Afstand van de randen"
 
 #~ msgid "Opacity of the \"Top of Page\" image (0-99)"
 #~ msgstr "Doorzichtigheid van de \"Begin van de pagina\" afbeelding"
@@ -187,20 +219,23 @@ msgstr "Begin van de pagina"
 #~ msgid "Optimize Database after Deleting Revisions SETTINGS UPDATED"
 #~ msgstr "Optimize Database after Deleting Revisions INSTELLINGEN AANGEPAST"
 
-#~ msgid "Click <a href=\"tools.php?page=rvg-optimize-db.php\" class=\"odb-bold\">HERE</a> to run the optimization"
-#~ msgstr "Klik <a href=\"tools.php?page=rvg-optimize-db.php\" class=\"odb-bold\">HIER</a. om de optimalisatie te starten"
+#~ msgid ""
+#~ "Click <a href=\"tools.php?page=rvg-optimize-db.php\" class=\"odb-bold"
+#~ "\">HERE</a> to run the optimization"
+#~ msgstr ""
+#~ "Klik <a href=\"tools.php?page=rvg-optimize-db.php\" class=\"odb-bold"
+#~ "\">HIER</a. om de optimalisatie te starten"
 
 #~ msgid "Using Optimize Database after Deleting Revisions"
 #~ msgstr "Het gebruik van Optimize Database after Deleting Revisions"
 
 #~ msgid "is an one-click plugin to clean and optimize your WordPress database"
-#~ msgstr "is een één-klik plugin om de WordPress database op te schonen en te optimaliseren"
+#~ msgstr ""
+#~ "is een één-klik plugin om de WordPress database op te schonen en te "
+#~ "optimaliseren"
 
 #~ msgid "Plugin version:"
 #~ msgstr "Plugin versie:"
-
-#~ msgid "Author"
-#~ msgstr "Auteur"
 
 #~ msgid "The Netherlands"
 #~ msgstr "Nederland"
@@ -215,7 +250,9 @@ msgstr "Begin van de pagina"
 #~ msgstr "Optimize Database after Deleting Revisions - Instellingen"
 
 #~ msgid "Maximum number of - most recent - revisions to keep per post / page"
-#~ msgstr "Maximaal aantal (meest recente) revisies die bewaard worden per bericht / pagina"
+#~ msgstr ""
+#~ "Maximaal aantal (meest recente) revisies die bewaard worden per bericht / "
+#~ "pagina"
 
 #~ msgid "('0' means: delete <u>ALL</u> revisions)"
 #~ msgstr "('0' betekent: verwijder <u>ALLE</u> revisies)"
@@ -271,8 +308,14 @@ msgstr "Begin van de pagina"
 #~ msgid "Show an icon in the Admin Menu"
 #~ msgstr "Toon een icon in het Admin Menu"
 
-#~ msgid "EXCLUDE DATABASE TABLES FROM OPTIMIZATION: <span class=\"odb-underline-red\">CHECKED</span> TABLES <span class=\"odb-underline-red\">WON'T</span> BE OPTIMIZED!</span>"
-#~ msgstr "SLUIT DE VOLGENDE TABELLEN UIT VAN OPTIMILIZATIE: <span class=\"odb-underline-red\">AANGEVINKTE</span> TABELLEN ZULLEN <span class=\"odb-underline-red\">NIET</span> GEOPTIMALISEERD WORDEN!</span>"
+#~ msgid ""
+#~ "EXCLUDE DATABASE TABLES FROM OPTIMIZATION: <span class=\"odb-underline-red"
+#~ "\">CHECKED</span> TABLES <span class=\"odb-underline-red\">WON'T</span> "
+#~ "BE OPTIMIZED!</span>"
+#~ msgstr ""
+#~ "SLUIT DE VOLGENDE TABELLEN UIT VAN OPTIMILIZATIE: <span class=\"odb-"
+#~ "underline-red\">AANGEVINKTE</span> TABELLEN ZULLEN <span class=\"odb-"
+#~ "underline-red\">NIET</span> GEOPTIMALISEERD WORDEN!</span>"
 
 #~ msgid "check all tables"
 #~ msgstr "vink alle tabellen aan"
@@ -508,23 +551,43 @@ msgstr "Begin van de pagina"
 #~ msgid "Optimize Database after Deleting Revisions OPTIONS UPDATED"
 #~ msgstr "Optimize Database after Deleting Revisions OPTIES OPGESLAGEN"
 
-#~ msgid "Click <a href=\"tools.php?page=rvg-optimize-db.php\" style=\"font-weight:bold\">HERE</a> to run the optimization"
-#~ msgstr "Klik <a href=\"tools.php?page=rvg-optimize-db.php\" style=\"font-weight:bold\">HIER</a> om de optimalisatie te starten"
+#~ msgid ""
+#~ "Click <a href=\"tools.php?page=rvg-optimize-db.php\" style=\"font-weight:"
+#~ "bold\">HERE</a> to run the optimization"
+#~ msgstr ""
+#~ "Klik <a href=\"tools.php?page=rvg-optimize-db.php\" style=\"font-weight:"
+#~ "bold\">HIER</a> om de optimalisatie te starten"
 
 #~ msgid "To start the optimization:"
 #~ msgstr "Om de optimalisatie te starten:"
 
-#~ msgid "<strong>WP Admin Panel</strong> &raquo; <strong>Tools</strong> &raquo; <strong>Optimize Database</strong>. Then click the '<strong>Start Optimization</strong>'-button. Et voila!"
-#~ msgstr "<strong>WP Admin Panel</strong> &raquo; <strong>Extra</strong> &raquo; <strong>Optimaliseren Database</strong>. Klik dan de  '<strong>Start Optimalisatie</strong>'-knop. Et voila!"
+#~ msgid ""
+#~ "<strong>WP Admin Panel</strong> &raquo; <strong>Tools</strong> &raquo; "
+#~ "<strong>Optimize Database</strong>. Then click the '<strong>Start "
+#~ "Optimization</strong>'-button. Et voila!"
+#~ msgstr ""
+#~ "<strong>WP Admin Panel</strong> &raquo; <strong>Extra</strong> &raquo; "
+#~ "<strong>Optimaliseren Database</strong>. Klik dan de  '<strong>Start "
+#~ "Optimalisatie</strong>'-knop. Et voila!"
 
-#~ msgid "Note: if you use the Scheduler the Optimization will run automatically!"
-#~ msgstr "Opmerking: als u gebruik maakt van de Planner zal de optimalisatie automatisch worden uitgevoerd"
+#~ msgid ""
+#~ "Note: if you use the Scheduler the Optimization will run automatically!"
+#~ msgstr ""
+#~ "Opmerking: als u gebruik maakt van de Planner zal de optimalisatie "
+#~ "automatisch worden uitgevoerd"
 
 #~ msgid "Optimize Database after Deleting Revisions - Options"
 #~ msgstr "Optimize Database after Deleting Revisions - Opties"
 
-#~ msgid "EXCLUDE DATABASE TABLES FROM OPTIMIZATION: <span style=\"text-decoration:underline;color:#F00;\">CHECKED</span> TABLES <span style=\"text-decoration:underline;color:#F00;\">WON'T</span> BE OPTIMIZED!</span>"
-#~ msgstr "SLUIT DE VOLGENDE TABELLEN UIT VAN OPTIMALISATIE: <span style=\"text-decoration:underline;color:#F00;\">AANGEVINKTE</span> TABELLEN WORDEN <span style=\"text-decoration:underline;color:#F00;\">NIET</span> GEOPTIMALISEERD!</span>"
+#~ msgid ""
+#~ "EXCLUDE DATABASE TABLES FROM OPTIMIZATION: <span style=\"text-decoration:"
+#~ "underline;color:#F00;\">CHECKED</span> TABLES <span style=\"text-"
+#~ "decoration:underline;color:#F00;\">WON'T</span> BE OPTIMIZED!</span>"
+#~ msgstr ""
+#~ "SLUIT DE VOLGENDE TABELLEN UIT VAN OPTIMALISATIE: <span style=\"text-"
+#~ "decoration:underline;color:#F00;\">AANGEVINKTE</span> TABELLEN WORDEN "
+#~ "<span style=\"text-decoration:underline;color:#F00;\">NIET</span> "
+#~ "GEOPTIMALISEERD!</span>"
 
 #~ msgid "Current options"
 #~ msgstr "Huidige opties"

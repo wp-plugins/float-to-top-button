@@ -28,7 +28,13 @@ jQuery().ready(function() {
 				digits: true,
 				min: 0,
 				max: 99
-			},			
+			},
+			fttb_zindex: {
+				required: true,
+				digits: true,
+				min: 0,
+				max: 9999999999
+			},					
 		},
 		messages: {
 			fttb_topdistance: fttb_strings.topdistance,
@@ -36,7 +42,8 @@ jQuery().ready(function() {
 			fttb_animationinspeed: fttb_strings.animationinspeed,
 			fttb_animationoutspeed: fttb_strings.animationoutspeed,
 			fttb_opacity_out: fttb_strings.opacity_out,
-			fttb_opacity_over: fttb_strings.opacity_over	
+			fttb_opacity_over: fttb_strings.opacity_over,
+			fttb_zindex_over: fttb_strings.zindex
 		}
 	});
 });
